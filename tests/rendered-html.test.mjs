@@ -10,8 +10,12 @@ test("exports a branded static GitHub Pages site", async () => {
   assert.match(html, /Open Multilingual Intelligence/);
   assert.match(html, /Griot-MT/);
   assert.match(html, /Griot-ASR/);
-  assert.match(html, /Measured progress, shown in both directions/);
-  assert.match(html, /Visual simulation/);
+  assert.match(html, /Griot against widely used multilingual baselines/);
+  assert.match(html, /Google Translate/);
+  assert.match(html, /NLLB-200/);
+  assert.match(html, /Google Speech-to-Text/);
+  assert.match(html, /Luc Alapini/);
+  assert.match(html, /Lucien TITO/);
   assert.match(html, /2X-yx50xLF8/);
   assert.match(html, /Bivariant/);
   assert.doesNotMatch(html, /codex-preview|SkeletonPreview|react-loading-skeleton/);

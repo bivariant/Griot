@@ -8,13 +8,17 @@ const languages = [
   ["swh", "Swahili"], ["wol", "Wolof"],
 ];
 
-const observedResults = [
-  { label: "Baatonou → Français", baseline: 12, griot: 21.5, max: 25 },
-  { label: "Français → Baatonou", baseline: 5, griot: 5.26, max: 25 },
+const mtBenchmark = [
+  { label: "Fon ↔ FR", values: [12.4, 15.1, 22.8] },
+  { label: "Lingala ↔ FR", values: [18.2, 21.7, 27.6] },
+  { label: "Wolof ↔ FR", values: [16.8, 19.5, 25.4] },
 ];
 
-const simulatedMt = [["Baatonou", 43.4], ["Fon", 39.8], ["Lingala", 44.1], ["Wolof", 41.2], ["Swahili", 47.6], ["Oromo", 40.7]];
-const simulatedAsr = [["Baatonou", 18.9], ["Fon", 21.7], ["Lingala", 16.8], ["Wolof", 19.5], ["Swahili", 14.6], ["Oromo", 20.2]];
+const asrBenchmark = [
+  { label: "Fon", values: [28.2, 24.8, 18.6] },
+  { label: "Lingala", values: [24.7, 20.1, 15.9] },
+  { label: "Wolof", values: [27.4, 22.6, 17.2] },
+];
 
 const ResourceButton = ({ href, icon, children }: { href: string; icon: string; children: React.ReactNode }) => (
   <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noreferrer" : undefined}>
@@ -35,31 +39,46 @@ export default function Home() {
         <h1><span>Griot:</span> Open Multilingual Intelligence<br />for African Languages</h1>
         <p className="paper-subtitle">A community-oriented family of machine translation and speech recognition models for 18 African languages.</p>
         <div className="contributors" aria-label="Project contributors">
-          <a href="https://www.bivariant.com/" target="_blank" rel="noreferrer">Lucien Tito<sup>1</sup></a><span>·</span>
-          <a href="https://github.com/bivariant" target="_blank" rel="noreferrer">Griot Research &amp; Engineering Team<sup>1</sup></a>
+          <span>Luc Alapini<sup>1</sup></span><span>·</span>
+          <span>Arnauld Adjovi<sup>1</sup></span><span>·</span>
+          <span>Dave Dassi<sup>1</sup></span><span>·</span>
+          <span>Johaness Hounton<sup>1</sup></span><span>·</span>
+          <span>Lucien TITO<sup>1</sup></span>
         </div>
         <p className="affiliation"><sup>1</sup>Bivariant · Cotonou, Benin</p>
         <p className="release-line">Community Open-Source Release · 2026</p>
         <div className="paper-actions" aria-label="Project resources">
-          <ResourceButton href="#abstract" icon="▤">Project brief</ResourceButton>
-          <ResourceButton href="https://github.com/bivariant/Griot" icon="⌘">Code</ResourceButton>
+          <ResourceButton href="#citation" icon="▤">Paper</ResourceButton>
+          <ResourceButton href="https://github.com/bivariant/Griot" icon="◉">Code</ResourceButton>
+          <ResourceButton href="#citation" icon="╳">arXiv</ResourceButton>
           <ResourceButton href="https://huggingface.co/bivariant/griot-mt" icon="🤗">Models</ResourceButton>
-          <ResourceButton href="#benchmarks" icon="▥">Results</ResourceButton>
-          <ResourceButton href="https://youtu.be/2X-yx50xLF8" icon="▶">Video</ResourceButton>
         </div>
         <div className="hero-rule" /><p className="hero-note">Translation · Speech recognition · Reproducible evaluation · Community participation</p>
       </section>
 
-      <section className="hero-figure" aria-labelledby="system-overview-title">
-        <div className="figure-heading"><span>System overview</span><strong id="system-overview-title">One multilingual foundation. Two open model families.</strong></div>
-        <div className="system-canvas">
-          <div className="system-inputs"><div><span>Parallel text</span><small>French ↔ 18 languages</small></div><div><span>African speech</span><small>Audio + verified transcripts</small></div></div>
-          <div className="system-arrow" aria-hidden="true">→</div>
-          <div className="system-core"><span>GRIOT</span><small>Multilingual language intelligence</small></div>
-          <div className="system-arrow" aria-hidden="true">→</div>
-          <div className="system-outputs"><div><b>Griot-MT</b><small>Bidirectional translation</small></div><div><b>Griot-ASR</b><small>Speech transcription</small></div></div>
+      <section className="comparison-figure" id="benchmarks" aria-labelledby="benchmark-title">
+        <div className="figure-heading"><span>Benchmark preview</span><strong id="benchmark-title">Griot against widely used multilingual baselines.</strong></div>
+        <div className="comparison-panels">
+          <article className="comparison-panel">
+            <header><div><span>Machine translation</span><h2>BLEU ↑</h2></div><small>Higher is better</small></header>
+            <div className="chart-legend"><span><i className="nllb" />NLLB-200</span><span><i className="google" />Google Translate</span><span><i className="griot" />Griot-MT</span></div>
+            <div className="grouped-chart">
+              <span className="axis-label">BLEU</span>
+              {mtBenchmark.map((group) => <div className="chart-group" key={group.label}><div className="bar-cluster">{group.values.map((value,index) => <i className={`chart-bar bar-${index}`} style={{height:`${value*2.8}%`}} key={index}><b>{value}</b></i>)}</div><strong>{group.label}</strong></div>)}
+            </div>
+            <p className="panel-caption">French ↔ African language translation</p>
+          </article>
+          <article className="comparison-panel">
+            <header><div><span>Automatic speech recognition</span><h2>WER ↓</h2></div><small>Lower is better</small></header>
+            <div className="chart-legend"><span><i className="nllb" />Whisper large-v3</span><span><i className="google" />Google Speech-to-Text</span><span><i className="griot" />Griot-ASR</span></div>
+            <div className="grouped-chart">
+              <span className="axis-label">WER</span>
+              {asrBenchmark.map((group) => <div className="chart-group" key={group.label}><div className="bar-cluster">{group.values.map((value,index) => <i className={`chart-bar bar-${index}`} style={{height:`${value*2.8}%`}} key={index}><b>{value}</b></i>)}</div><strong>{group.label}</strong></div>)}
+            </div>
+            <p className="panel-caption">African language speech transcription</p>
+          </article>
         </div>
-        <p className="figure-caption"><b>Figure 1.</b> Griot connects curated African-language resources to reusable translation and speech models through a shared, auditable release framework.</p>
+        <p className="figure-caption"><b>Figure 1.</b> Planned comparative reporting for Griot-MT and Griot-ASR. Values are simulated exclusively to validate the presentation and are not published model results.</p>
       </section>
 
       <section className="content-section" id="abstract">
@@ -68,21 +87,6 @@ export default function Home() {
           <div className="abstract-grid"><p>Griot is Bivariant&apos;s open multilingual research initiative for African languages. It brings machine translation and automatic speech recognition into one coherent ecosystem: shared language coverage, reproducible data protocols, language-level evaluation and practical model releases.</p><p>The first release targets 18 languages spanning West, Central, East and Southern Africa. Griot-MT supports bidirectional translation with French; Griot-ASR extends the same language-first philosophy to speech. The project is designed for researchers, builders and communities who need transparent systems they can inspect, adapt and improve.</p></div>
           <div className="contribution-strip"><div><strong>18</strong><span>African languages</span></div><div><strong>530k+</strong><span>Validated MT pairs</span></div><div><strong>2-way</strong><span>Translation evaluation</span></div><div><strong>MT + ASR</strong><span>Open model families</span></div></div>
         </div>
-      </section>
-
-      <section className="benchmark-section" id="benchmarks">
-        <div className="benchmark-head"><p className="section-kicker light">Benchmark preview</p><h2>Measured progress, shown in both directions.</h2><p>Observed pilot results are separated from visual simulations. Final release tables will remain versioned by model, language, direction and test set.</p></div>
-        <article className="observed-card">
-          <div className="result-title"><div><span>Observed pilot checkpoint</span><h3>Baatonou ↔ Français</h3></div><div className="metric-pill">BLEU · step 800</div></div>
-          <div className="observed-chart">{observedResults.map((row) => <div className="observed-row" key={row.label}><strong>{row.label}</strong><div className="bar-group"><div className="bar-line"><span className="bar-label">Previous full fine-tune</span><i style={{ width:`${(row.baseline/row.max)*100}%` }} /><b>{row.baseline.toFixed(1)}</b></div><div className="bar-line current"><span className="bar-label">Griot LoRA pilot</span><i style={{ width:`${(row.griot/row.max)*100}%` }} /><b>{row.griot.toFixed(2)}</b></div></div></div>)}</div>
-          <p className="result-note">Pilot checkpoint reported during training; not a final test-set claim. The Baatonou → French direction already exceeds the previous six-epoch baseline.</p>
-        </article>
-        <div className="simulation-label"><span>Visual simulation</span> The following cards demonstrate the intended final benchmark presentation. Non-Baatonou values are illustrative, not published results.</div>
-        <div className="benchmark-grid">
-          <article className="mini-benchmark"><header><div><span>Machine translation</span><h3>chrF++ ↑</h3></div><b>Higher is better</b></header><div className="mini-chart">{simulatedMt.map(([name,value]) => <div key={name as string}><span>{name}</span><i><em style={{width:`${Number(value)*1.65}%`}} /></i><b>{value}</b></div>)}</div></article>
-          <article className="mini-benchmark"><header><div><span>Speech recognition</span><h3>WER ↓</h3></div><b>Lower is better</b></header><div className="mini-chart asr-chart">{simulatedAsr.map(([name,value]) => <div key={name as string}><span>{name}</span><i><em style={{width:`${Number(value)*3.2}%`}} /></i><b>{value}</b></div>)}</div></article>
-        </div>
-        <p className="figure-caption benchmark-caption"><b>Figure 2.</b> Proposed language-level benchmark format for the Griot model card. Scores will be accompanied by dataset versions, decoding settings and confidence notes.</p>
       </section>
 
       <section className="content-section method-section" id="method">
@@ -101,8 +105,9 @@ export default function Home() {
       <section className="citation-section" id="citation"><div><p className="section-kicker">Citation</p><h2>Build with Griot.<br />Credit the community.</h2><p>A formal technical report and versioned citation will accompany the model release. Use this project citation for the public initiative.</p></div><pre><code>{`@misc{griot2026,
   title  = {Griot: Open Multilingual Intelligence
             for African Languages},
-  author = {Tito, Lucien and
-            Griot Research and Engineering Team},
+  author = {Alapini, Luc and Adjovi, Arnauld and
+            Dassi, Dave and Hounton, Johaness and
+            Tito, Lucien},
   year   = {2026},
   url    = {https://bivariant.github.io/Griot/},
   note   = {Bivariant community open-source initiative}
