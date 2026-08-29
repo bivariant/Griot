@@ -1,4 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
+import { FaFilePdf, FaGithub } from "react-icons/fa6";
+import { SiArxiv } from "react-icons/si";
 
 const languages = [
   ["bba", "Baatonou"], ["bci", "Baoulé"], ["dyu", "Dioula"], ["ewe", "Ewé"],
@@ -20,9 +22,9 @@ const asrBenchmark = [
   { label: "Wolof", values: [27.4, 22.6, 17.2] },
 ];
 
-const ResourceButton = ({ href, icon, children }: { href: string; icon: string; children: React.ReactNode }) => (
+const ResourceButton = ({ href, icon, children }: { href: string; icon: React.ReactNode; children: React.ReactNode }) => (
   <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noreferrer" : undefined}>
-    <span aria-hidden="true">{icon}</span>{children}
+    {icon}{children}
   </a>
 );
 
@@ -48,10 +50,10 @@ export default function Home() {
         <p className="affiliation"><sup>1</sup>Bivariant · Cotonou, Benin</p>
         <p className="release-line">Community Open-Source Release · 2026</p>
         <div className="paper-actions" aria-label="Project resources">
-          <ResourceButton href="#citation" icon="▤">Paper</ResourceButton>
-          <ResourceButton href="https://github.com/bivariant/Griot" icon="◉">Code</ResourceButton>
-          <ResourceButton href="#citation" icon="╳">arXiv</ResourceButton>
-          <ResourceButton href="https://huggingface.co/bivariant/griot-mt" icon="🤗">Models</ResourceButton>
+          <ResourceButton href="#citation" icon={<FaFilePdf aria-hidden="true" />}>Paper</ResourceButton>
+          <ResourceButton href="https://github.com/bivariant/Griot" icon={<FaGithub aria-hidden="true" />}>Code</ResourceButton>
+          <ResourceButton href="#citation" icon={<SiArxiv aria-hidden="true" />}>arXiv</ResourceButton>
+          <ResourceButton href="https://huggingface.co/bivariant/griot-mt" icon={<span className="hugging-icon" aria-hidden="true">🤗</span>}>Models</ResourceButton>
         </div>
         <div className="hero-rule" /><p className="hero-note">Translation · Speech recognition · Reproducible evaluation · Community participation</p>
       </section>
