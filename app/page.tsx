@@ -200,6 +200,10 @@ export default function Home() {
           <span>Dave Dassi<sup>1</sup></span><span>·</span>
           <span>Johaness Hounton<sup>1</sup></span><span>·</span>
           <span>Lucien TITO<sup>1</sup></span>
+          <span>Ahmed Adjibade<sup>1</sup></span>
+          <span>Joel Gnansounou<sup>1</sup></span>
+          <span>Marius Sègbè<sup>1</sup></span>
+          <span>Gloria Gado<sup>1</sup></span>
         </div>
 
         <p className="affiliation"><sup>1</sup>Bivariant · Cotonou, Benin</p>

@@ -154,13 +154,17 @@ h1, h2, h3 { font-family: "BT Beau Sans", "Geist", sans-serif; }
   align-items: center;
   justify-content: space-between;
   gap: 30px;
+
   position: sticky;
   top: 0;
-  z-index: 50;
-  border-bottom: 1px solid rgba(220, 226, 235, 0.88);
-  background: rgba(255, 255, 255, 0.91);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  z-index: 1000;
+
+  background: #ffffff;
+  border-bottom: 1px solid rgba(220, 226, 235, 0.95);
+
+  box-shadow:
+    0 1px 0 rgba(7, 16, 32, 0.02),
+    0 6px 20px rgba(7, 16, 32, 0.035);
 }
 
 .nav-wordmark {
