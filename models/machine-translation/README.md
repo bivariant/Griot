@@ -187,8 +187,12 @@ The exported site is written to `out/`.
 - Dave Dassi
 - Johaness Hounton
 - Lucien TITO
+- Ahmed Adjibade
+- Joel Gnansounou
+- Marius Sègbè
+- Gloria Gado
 
-Bivariant · Cotonou, Benin
+Bivariant · Paris, France
 
 ## Citation
 
