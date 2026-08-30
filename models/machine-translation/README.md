@@ -195,8 +195,8 @@ Bivariant · Cotonou, Benin
 ```bibtex
 @misc{griot2026,
   title  = {Griot: Open Multilingual Intelligence for African Languages},
-  author = {Alapini, Luc and Adjovi, Arnauld and Dassi, Dave and
-            Hounton, Johaness and Tito, Lucien},
+  author = {Alapini Luc, Arnauld Adjovi, Dave Dassi, Johaness Hounton, Lucien Tito, 
+            Ahmed Adjibade, Joel Gnansounou, Marius Sègbè, Gloria Gado},
   year   = {2026},
   url    = {https://bivariant.github.io/Griot/},
   note   = {Bivariant open-source African language model initiative}

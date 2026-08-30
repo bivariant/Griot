@@ -81,3 +81,14 @@ For every language:
 ## Status
 
 Repository structure prepared. Model architecture, adapter configuration, weights, inference code and final benchmark results will be documented in the model-release phase.
+
+```bibtex
+@misc{griot2026,
+  title  = {Griot: Open Multilingual Intelligence for African Languages},
+  author = {Alapini Luc, Arnauld Adjovi, Dave Dassi, Johaness Hounton, Lucien Tito, 
+            Ahmed Adjibade, Joel Gnansounou, Marius Sègbè, Gloria Gado},
+  year   = {2026},
+  url    = {https://bivariant.github.io/Griot/},
+  note   = {Bivariant open-source African language model initiative}
+}
+```
