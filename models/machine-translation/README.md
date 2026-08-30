@@ -1,33 +1,25 @@
 <p align="center">
-
   <img src="https://raw.githubusercontent.com/bivariant/Griot/main/public/images/griot-logo.png" alt="Griot by Bivariant" width="420" />
-
 </p>
 
 <h1 align="center">Griot : Open Multilingual Intelligence for African Languages</h1>
 
 <p align="center">
-
   Open machine translation models for 18 African languages.
-
 </p>
 
 <p align="center">
-
   <strong>18 languages</strong> ·
   <strong>36 MT directions</strong> ·
   <strong>420M+ potential speaker coverage</strong> ·
   <strong>25+ countries represented</strong>
-
 </p>
 
 <p align="center">
-
   <a href="https://bivariant.github.io/Griot/">Project page</a> ·
   <a href="https://github.com/bivariant/Griot">GitHub</a> ·
   <a href="https://huggingface.co/bivariant/griot-mt">Hugging Face</a> ·
   <a href="https://www.bivariant.com/">Bivariant</a>
-
 </p>
 
 ---
@@ -87,74 +79,96 @@ Open the model repository:
 
 **[Hugging Face : `bivariant/griot-mt`](https://huggingface.co/bivariant/griot-mt)**
 
-## Benchmark philosophy
+## Inference
 
-Griot-MT is intended to be evaluated against both **open-weight multilingual models** and **commercial systems people actually use**.
+Griot-MT is released as a shared model with one language-specific LoRA adapter per African language.
 
-### Machine Translation baselines
+The example below runs **French → Baatonou (`bba`)** using only artifacts published in `bivariant/griot-mt`.
 
-- Google Translate
-- Gemini
-- NLLB-200 3.3B
-- MADLAD-400 10B
-- SeamlessM4T-v2 Large
+### Install
 
-## Public evaluation resources
-
-Where target-language coverage exists, evaluation should rely on public, inspectable datasets.
-
-| Dataset / ecosystem | Task | Metrics |
-|---|---|---|
-| FLORES-200 | MT | BLEU, chrF++ |
-| OPUS / JW300 | MT | BLEU, chrF++ |
-| Masakhane MT | MT | BLEU, chrF++ |
-
-For languages with insufficient public benchmark coverage, Bivariant intends to use separately released, contamination-controlled evaluation sets.
-
-## Evaluation rules
-
-Every public score should be reproducible.
-
-1. Freeze the exact dataset and version before evaluation.
-2. Keep train, validation and benchmark data disjoint.
-3. Apply documented normalization consistently across systems.
-4. Evaluate every model on the same examples.
-5. Report **per-language** results in addition to macro averages.
-6. Report both translation directions independently.
-7. For commercial APIs, record provider, model/version, decoding/prompt settings and evaluation date.
-8. Release evaluation scripts and predictions where licenses permit.
-
-### Metrics
-
-**Machine Translation**
-
-- BLEU
-- chrF++
-- SacreBLEU signature
-
-## Repository structure
-
-```text
-Griot/
-├── app/
-│   ├── page.tsx
-│   ├── layout.tsx
-│   └── globals.css
-├── models/
-│   └── machine-translation/
-│       ├── README.md
-│       └── adapters/
-├── public/
-│   ├── images/
-│   │   └── griot-logo.png
-│   └── .nojekyll
-├── .github/
-│   └── workflows/
-│       ├── deploy-pages.yml
-│       └── sync-griot-mt-hf.yml
-├── next.config.ts
-└── README.md
+```bash
+pip uninstall -y torchao
+pip install -q \
+  "transformers==5.16.1" \
+  "peft==0.20.0" \
+  "accelerate==1.14.0" \
+  "sentencepiece==0.2.2" \
+  "safetensors>=0.4.3" \
+  "huggingface_hub>=0.34.0"
 ```
+
+### French → Baatonou
+
+```python
+from pathlib import Path
+
+import torch
+from huggingface_hub import snapshot_download
+from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
+from peft import PeftModel
+
+REPO = "bivariant/griot-mt"
+TEXT = "Bonjour, comment allez-vous aujourd'hui ?"
+
+path = snapshot_download(
+    REPO,
+    allow_patterns=[
+        "config.json",
+        "generation_config.json",
+        "model.safetensors",
+        "tokenizer.json",
+        "tokenizer_config.json",
+        "adapters/bba/adapter_config.json",
+        "adapters/bba/adapter_model.safetensors",
+    ],
+)
+
+device = (
+    "cuda"
+    if torch.cuda.is_available()
+    else "mps"
+    if torch.backends.mps.is_available()
+    else "cpu"
+)
+
+dtype = torch.float16 if device != "cpu" else torch.float32
+
+tokenizer = AutoTokenizer.from_pretrained(
+    path,
+    local_files_only=True,
+)
+tokenizer.src_lang = "fra_Latn"
+
+base = AutoModelForSeq2SeqLM.from_pretrained(
+    path,
+    local_files_only=True,
+    dtype=dtype,
+    low_cpu_mem_usage=True,
+)
+
+model = PeftModel.from_pretrained(
+    base,
+    Path(path) / "adapters" / "bba",
+    is_trainable=False,
+).to(device).eval()
+
+inputs = tokenizer(
+    TEXT,
+    return_tensors="pt",
+).to(device)
+
+with torch.inference_mode():
+    output = model.generate(
+        **inputs,
+        forced_bos_token_id=tokenizer.convert_tokens_to_ids("bba_Latn"),
+    )
+
+print("FR :", TEXT)
+print("BBA:", tokenizer.decode(output[0], skip_special_tokens=True))
+```
+
+To use another Griot-MT language, replace the adapter path and language token with the corresponding released language configuration.
 
 ## GitHub Pages
 
@@ -168,7 +182,6 @@ This repository is configured as a static Next.js export for GitHub Pages.
 
 ```bash
 npm install
-
 npm run dev
 ```
 
@@ -199,7 +212,7 @@ Bivariant · Paris, France
 ```bibtex
 @misc{griot2026,
   title  = {Griot: Open Multilingual Intelligence for African Languages},
-  author = {Alapini Luc, Arnauld Adjovi, Dave Dassi, Johaness Hounton, Lucien Tito, 
+  author = {Alapini Luc, Arnauld Adjovi, Dave Dassi, Johaness Hounton, Lucien Tito,
             Ahmed Adjibade, Joel Gnansounou, Marius Sègbè, Gloria Gado},
   year   = {2026},
   url    = {https://bivariant.github.io/Griot/},
@@ -210,8 +223,6 @@ Bivariant · Paris, France
 ---
 
 <p align="center">
-
   <strong>Bivariant</strong><br/>
   Building foundational language technology for Africa's linguistic diversity.
-
 </p>
