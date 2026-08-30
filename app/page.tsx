@@ -247,8 +247,9 @@ export default function Home() {
         </p>
       </section>
 
-      <section className="content-section" id="overview">
+     <section className="content-section" id="overview">
         <div className="section-number">01</div>
+
         <div className="section-body">
           <p className="section-kicker">Overview</p>
           <h2>African language technology at continental scale.</h2>
@@ -260,25 +261,27 @@ export default function Home() {
               capabilities: <strong>machine translation</strong> and{" "}
               <strong>automatic speech recognition</strong>.
             </p>
+
             <p>
               The release supports 18 languages spanning West, Central, East,
               Horn and Southern Africa, with a potential linguistic reach of
               more than <strong>420 million speakers</strong>.
             </p>
+
             <p>
               For machine translation, every supported African language is
               available in both directions with French, producing{" "}
               <strong>36 translation directions</strong>.
             </p>
+
             <p>
               Griot is designed as an open release ecosystem: model weights,
               LoRA adapters, inference code, evaluation scripts, benchmark
               configuration and model cards are versioned together.
             </p>
           </div>
-
-          
-      </section>
+        </div>
+     </section>
 
       <section className="coverage-section">
         <div className="coverage-copy">
