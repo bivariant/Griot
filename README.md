@@ -2,7 +2,7 @@
   <img src="./public/images/griot-logo.png" alt="Griot by Bivariant" width="420" />
 </p>
 
-<h1 align="center">Griot — Open Multilingual Intelligence for African Languages</h1>
+<h1 align="center">Griot : Open Multilingual Intelligence for African Languages</h1>
 
 <p align="center">
   Open machine translation and automatic speech recognition models for 18 African languages.
@@ -31,8 +31,8 @@
 
 The first public release focuses on two foundational capabilities:
 
-- **Griot-MT** — machine translation between French and 18 African languages, in both directions.
-- **Griot-ASR** — automatic speech recognition for the same African language ecosystem.
+- **Griot-MT** : machine translation between French and 18 African languages, in both directions.
+- **Griot-ASR** : automatic speech recognition for the same African language ecosystem.
 
 The project is structured as an open model family rather than a single checkpoint. Each language is released as a dedicated **LoRA adapter** over a shared multilingual backbone, with common model cards, evaluation scripts and versioned reporting.
 

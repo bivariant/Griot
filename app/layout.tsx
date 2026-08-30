@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
 
   title: {
-    default: "Griot — Open AI Models for African Languages",
+    default: "Griot : Open AI Models for African Languages",
     template: "%s | Griot by Bivariant",
   },
 
@@ -82,21 +82,21 @@ export const metadata: Metadata = {
     type: "website",
     url: SITE_URL,
     siteName: "Griot by Bivariant",
-    title: "Griot — Open AI Models for African Languages",
+    title: "Griot : Open AI Models for African Languages",
     description:
       "Open machine translation and speech recognition models for 18 African languages, 36 translation directions and communities representing more than 420 million speakers.",
     images: [{
       url: OG_IMAGE,
       width: 2048,
       height: 768,
-      alt: "Griot — Open Multilingual Intelligence for African Languages by Bivariant",
+      alt: "Griot : Open Multilingual Intelligence for African Languages by Bivariant",
     }],
     locale: "en_US",
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "Griot — Open AI Models for African Languages",
+    title: "Griot : Open AI Models for African Languages",
     description:
       "18 African languages. 36 translation directions. 420M+ speakers. Open machine translation and speech recognition models by Bivariant.",
     images: [OG_IMAGE],

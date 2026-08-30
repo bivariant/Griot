@@ -4,7 +4,7 @@
 
 </p>
 
-<h1 align="center">Griot — Open Multilingual Intelligence for African Languages</h1>
+<h1 align="center">Griot : Open Multilingual Intelligence for African Languages</h1>
 
 <p align="center">
 
@@ -38,7 +38,7 @@
 
 The first public machine translation release is:
 
-- **Griot-MT** — machine translation between French and 18 African languages, in both directions.
+- **Griot-MT** : machine translation between French and 18 African languages, in both directions.
 
 The project is structured as an open model family rather than a single checkpoint. Each language is released as a dedicated **LoRA adapter** over a shared multilingual backbone, with common model cards, evaluation scripts and versioned reporting.
 
@@ -85,7 +85,7 @@ Open the machine translation release documentation:
 
 Open the model repository:
 
-**[Hugging Face — `bivariant/griot-mt`](https://huggingface.co/bivariant/griot-mt)**
+**[Hugging Face : `bivariant/griot-mt`](https://huggingface.co/bivariant/griot-mt)**
 
 ## Benchmark philosophy
 

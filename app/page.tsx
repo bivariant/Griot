@@ -347,7 +347,7 @@ export default function Home() {
         </div>
 
         <div className="benchmark-warning">
-          <strong>DESIGN PREVIEW — SYNTHETIC RESULTS</strong>
+          <strong>DESIGN PREVIEW : SYNTHETIC RESULTS</strong>
           <p>
             The numerical values displayed below are fictitious and exist only
             to design the release page. Replace them with reproducible
