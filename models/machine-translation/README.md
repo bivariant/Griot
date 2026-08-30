@@ -1,26 +1,33 @@
 <p align="center">
-  <img src="./public/images/griot-logo.png" alt="Griot by Bivariant" width="420" />
+
+  <img src="https://raw.githubusercontent.com/bivariant/Griot/main/public/images/griot-logo.png" alt="Griot by Bivariant" width="420" />
+
 </p>
 
 <h1 align="center">Griot — Open Multilingual Intelligence for African Languages</h1>
 
 <p align="center">
-  Open machine translation and automatic speech recognition models for 18 African languages.
+
+  Open machine translation models for 18 African languages.
+
 </p>
 
 <p align="center">
+
   <strong>18 languages</strong> ·
   <strong>36 MT directions</strong> ·
   <strong>420M+ potential speaker coverage</strong> ·
-  <strong>25+ countries represented</strong> ·
-  <strong>MT + ASR</strong>
+  <strong>25+ countries represented</strong>
+
 </p>
 
 <p align="center">
+
   <a href="https://bivariant.github.io/Griot/">Project page</a> ·
-  <a href="./models/machine-translation/">Griot-MT</a> ·
-  <a href="./models/asr/">Griot-ASR</a> ·
+  <a href="https://github.com/bivariant/Griot">GitHub</a> ·
+  <a href="https://huggingface.co/bivariant/griot-mt">Hugging Face</a> ·
   <a href="https://www.bivariant.com/">Bivariant</a>
+
 </p>
 
 ---
@@ -29,14 +36,13 @@
 
 **Griot** is Bivariant's open family of language models for African languages.
 
-The first public release focuses on two foundational capabilities:
+The first public machine translation release is:
 
 - **Griot-MT** — machine translation between French and 18 African languages, in both directions.
-- **Griot-ASR** — automatic speech recognition for the same African language ecosystem.
 
 The project is structured as an open model family rather than a single checkpoint. Each language is released as a dedicated **LoRA adapter** over a shared multilingual backbone, with common model cards, evaluation scripts and versioned reporting.
 
-> The exact backbone, LoRA rank, target modules, training recipe and adapter packaging will be documented with the model release.
+> The public runtime, required adapter configuration and packaging are documented with the model release. Bivariant's training recipe, data-processing pipeline and internal optimization methodology remain proprietary.
 
 ## Coverage
 
@@ -70,23 +76,20 @@ Country references indicate representative speech communities, not an exhaustive
 | Model | Task | Coverage | Packaging | Primary metrics |
 |---|---|---|---|---|
 | **Griot-MT** | Machine Translation | 18 languages / 36 FR ↔ African-language directions | Shared multilingual backbone + LoRA adapter per language | BLEU, chrF++ |
-| **Griot-ASR** | Automatic Speech Recognition | 18 African languages | Shared backbone + LoRA adapter per language | WER, CER |
 
 ### Griot-MT
 
 Open the machine translation release documentation:
 
-**[`models/machine-translation/`](./models/machine-translation/)**
+**[`models/machine-translation/`](https://github.com/bivariant/Griot/tree/main/models/machine-translation/)**
 
-### Griot-ASR
+Open the model repository:
 
-Open the speech recognition release documentation:
-
-**[`models/asr/`](./models/asr/)**
+**[Hugging Face — `bivariant/griot-mt`](https://huggingface.co/bivariant/griot-mt)**
 
 ## Benchmark philosophy
 
-Griot is intended to be evaluated against both **open-weight multilingual models** and **commercial systems people actually use**.
+Griot-MT is intended to be evaluated against both **open-weight multilingual models** and **commercial systems people actually use**.
 
 ### Machine Translation baselines
 
@@ -96,13 +99,6 @@ Griot is intended to be evaluated against both **open-weight multilingual models
 - MADLAD-400 10B
 - SeamlessM4T-v2 Large
 
-### ASR baselines
-
-- Whisper large-v3
-- MMS-1B-All
-- SeamlessM4T-v2 Large
-- Google Speech-to-Text
-
 ## Public evaluation resources
 
 Where target-language coverage exists, evaluation should rely on public, inspectable datasets.
@@ -110,8 +106,6 @@ Where target-language coverage exists, evaluation should rely on public, inspect
 | Dataset / ecosystem | Task | Metrics |
 |---|---|---|
 | FLORES-200 | MT | BLEU, chrF++ |
-| FLEURS | ASR | WER, CER |
-| Mozilla Common Voice | ASR | WER, CER |
 | OPUS / JW300 | MT | BLEU, chrF++ |
 | Masakhane MT | MT | BLEU, chrF++ |
 
@@ -126,7 +120,7 @@ Every public score should be reproducible.
 3. Apply documented normalization consistently across systems.
 4. Evaluate every model on the same examples.
 5. Report **per-language** results in addition to macro averages.
-6. For MT, report both directions independently.
+6. Report both translation directions independently.
 7. For commercial APIs, record provider, model/version, decoding/prompt settings and evaluation date.
 8. Release evaluation scripts and predictions where licenses permit.
 
@@ -138,11 +132,6 @@ Every public score should be reproducible.
 - chrF++
 - SacreBLEU signature
 
-**Automatic Speech Recognition**
-
-- Word Error Rate (WER)
-- Character Error Rate (CER)
-
 ## Repository structure
 
 ```text
@@ -152,10 +141,7 @@ Griot/
 │   ├── layout.tsx
 │   └── globals.css
 ├── models/
-│   ├── machine-translation/
-│   │   ├── README.md
-│   │   └── adapters/
-│   └── asr/
+│   └── machine-translation/
 │       ├── README.md
 │       └── adapters/
 ├── public/
@@ -164,7 +150,8 @@ Griot/
 │   └── .nojekyll
 ├── .github/
 │   └── workflows/
-│       └── deploy-pages.yml
+│       ├── deploy-pages.yml
+│       └── sync-griot-mt-hf.yml
 ├── next.config.ts
 └── README.md
 ```
@@ -181,6 +168,7 @@ This repository is configured as a static Next.js export for GitHub Pages.
 
 ```bash
 npm install
+
 npm run dev
 ```
 
@@ -218,6 +206,8 @@ Bivariant · Cotonou, Benin
 ---
 
 <p align="center">
+
   <strong>Bivariant</strong><br/>
   Building foundational language technology for Africa's linguistic diversity.
+
 </p>
