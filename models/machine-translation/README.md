@@ -170,6 +170,8 @@ print("BBA:", tokenizer.decode(output[0], skip_special_tokens=True))
 
 To use another Griot-MT language, replace the adapter path and language token with the corresponding released language configuration.
 
+Collab : https://colab.research.google.com/drive/1pYcj0G53zT_cURW6mFkD-62pwJJZcVWR?usp=sharing
+
 ## GitHub Pages
 
 The scientific release page is deployed at:
