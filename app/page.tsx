@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { FaFilePdf, FaGithub } from "react-icons/fa6";
 import { SiArxiv } from "react-icons/si";
+import { SiHuggingface } from "react-icons/si";
 
 type Language = {
   code: string;
@@ -210,17 +211,39 @@ export default function Home() {
         <p className="release-line">Griot Open-Source Release · 2026</p>
 
         <div className="paper-actions" aria-label="Project resources">
-          <ResourceButton href="#citation" icon={<FaFilePdf aria-hidden="true" />}>Technical Report</ResourceButton>
-          <ResourceButton href="https://github.com/bivariant/Griot" icon={<FaGithub aria-hidden="true" />}>GitHub</ResourceButton>
-          <ResourceButton href="#citation" icon={<SiArxiv aria-hidden="true" />}>arXiv</ResourceButton>
-          <ResourceButton href="https://github.com/bivariant/Griot/tree/main/models/machine-translation" icon={<FaGithub aria-hidden="true" />}>Griot-MT</ResourceButton>
-          <ResourceButton href="https://github.com/bivariant/Griot/tree/main/models/asr" icon={<FaGithub aria-hidden="true" />}>Griot-ASR</ResourceButton>
+          <ResourceButton
+            href="#citation"
+            icon={<FaFilePdf aria-hidden="true" />}
+          >
+            Technical Report
+          </ResourceButton>
+
+          <ResourceButton
+            href="https://github.com/bivariant/Griot"
+            icon={<FaGithub aria-hidden="true" />}
+          >
+            GitHub
+          </ResourceButton>
+
+          <ResourceButton
+            href="https://huggingface.co/bivariant/griot-mt"
+            icon={<SiHuggingface aria-hidden="true" />}
+          >
+            Griot-MT
+          </ResourceButton>
+
+          <ResourceButton
+            href="https://huggingface.co/bivariant/griot-asr"
+            icon={<SiHuggingface aria-hidden="true" />}
+          >
+            Griot-ASR
+          </ResourceButton>
         </div>
 
         <div className="hero-rule" />
         <p className="hero-note">
           Machine Translation · Speech Recognition · Low-Resource Languages ·
-          Open Weights · Reproducible Evaluation
+          Open Weights
         </p>
       </section>
 
@@ -254,14 +277,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="contribution-strip">
-            <div><strong>18</strong><span>Languages</span></div>
-            <div><strong>36</strong><span>Translation directions</span></div>
-            <div><strong>420M+</strong><span>Potential speakers reached</span></div>
-            <div><strong>MT + ASR</strong><span>First open release</span></div>
-            <div><strong>Open</strong><span>Weights + evaluation</span></div>
-          </div>
-        </div>
+          
       </section>
 
       <section className="coverage-section">
@@ -340,7 +356,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="comparison-figure" id="benchmarks">
+      {/* <section className="comparison-figure" id="benchmarks">
         <div className="figure-heading">
           <span>Benchmark suite</span>
           <strong>Griot against leading open and commercial multilingual systems.</strong>
@@ -422,9 +438,9 @@ export default function Home() {
             decoding settings and evaluation-set version.
           </p>
         </article>
-      </section>
+      </section> */}
 
-      <section className="content-section baseline-section">
+      {/* <section className="content-section baseline-section">
         <div className="section-number">02</div>
         <div className="section-body">
           <p className="section-kicker">Baselines</p>
@@ -448,9 +464,9 @@ export default function Home() {
             </article>
           </div>
         </div>
-      </section>
+      </section> */}
 
-      <section className="benchmark-data-section" id="evaluation">
+      {/* <section className="benchmark-data-section" id="evaluation">
         <div className="benchmark-data-header">
           <p className="section-kicker light">Public evaluation data</p>
           <h2>Benchmark on datasets the research community can inspect.</h2>
@@ -473,7 +489,7 @@ export default function Home() {
             </article>
           ))}
         </div>
-      </section>
+      </section> */}
 
       <section className="content-section method-section">
         <div className="section-number">03</div>
@@ -505,26 +521,95 @@ export default function Home() {
       </section>
 
       <section className="technical-section">
-        <div className="technical-intro">
-          <p className="section-kicker">Technical release</p>
-          <h2>A model release should be more than a checkpoint.</h2>
-          <p>
-            Every Griot release should contain enough information for another
-            researcher to reproduce inference and evaluation without reverse
-            engineering the repository.
-          </p>
-        </div>
+          <div className="technical-intro">
+            <p className="section-kicker">Open-weight release</p>
 
-        <div className="technical-grid">
-          <article><span>01</span><h3>Model weights</h3><p>Versioned base checkpoints and LoRA adapters.</p></article>
-          <article><span>02</span><h3>Model cards</h3><p>Architecture, languages, use cases, limits and training summary.</p></article>
-          <article><span>03</span><h3>Inference</h3><p>Minimal examples for translation and transcription.</p></article>
-          <article><span>04</span><h3>Evaluation</h3><p>Scripts for BLEU, chrF++, WER and CER.</p></article>
-          <article><span>05</span><h3>Predictions</h3><p>Benchmark predictions where licenses allow redistribution.</p></article>
-          <article><span>06</span><h3>Training details</h3><p>Optimizer, schedule, precision, steps and hardware.</p></article>
-          <article><span>07</span><h3>Data statement</h3><p>Provenance, filtering, language distribution and permitted usage.</p></article>
-          <article><span>08</span><h3>Limitations</h3><p>Dialect, accent, domain and code-switching limitations.</p></article>
-        </div>
+            <h2>
+              Open weights, documented models, reproducible evaluation.
+            </h2>
+
+            <p>
+              Griot releases provide the model artifacts and documentation required
+              to run inference, inspect supported capabilities and reproduce public
+              evaluations. Training pipelines, internal datasets and proprietary
+              optimization recipes remain part of Bivariant&apos;s research and
+              engineering stack.
+            </p>
+          </div>
+
+          <div className="technical-grid">
+            <article>
+              <span>01</span>
+              <h3>Model weights</h3>
+              <p>
+                Versioned model checkpoints and language-specific adapters released
+                through Hugging Face.
+              </p>
+            </article>
+
+            <article>
+              <span>02</span>
+              <h3>Model cards</h3>
+              <p>
+                Architecture, supported languages, intended uses, known limitations
+                and release information.
+              </p>
+            </article>
+
+            <article>
+              <span>03</span>
+              <h3>Inference</h3>
+              <p>
+                Reference examples for running translation and speech recognition
+                with the released models.
+              </p>
+            </article>
+
+            <article>
+              <span>04</span>
+              <h3>Evaluation</h3>
+              <p>
+                Public evaluation protocols and metrics including BLEU, chrF++, WER
+                and CER where applicable.
+              </p>
+            </article>
+
+            <article>
+              <span>05</span>
+              <h3>Benchmarks</h3>
+              <p>
+                Comparable results against relevant public baselines and evaluation
+                datasets when available.
+              </p>
+            </article>
+
+            <article>
+              <span>06</span>
+              <h3>Provenance</h3>
+              <p>
+                Model lineage, released artifact versions and information required
+                to identify each public release.
+              </p>
+            </article>
+
+            <article>
+              <span>07</span>
+              <h3>Usage terms</h3>
+              <p>
+                Clear information on permitted usage, dependencies and applicable
+                terms for released artifacts.
+              </p>
+            </article>
+
+            <article>
+              <span>08</span>
+              <h3>Limitations</h3>
+              <p>
+                Documented limitations across languages, dialects, accents, domains
+                and code-switching scenarios.
+              </p>
+            </article>
+          </div>
       </section>
 
       <section className="language-section" id="languages">
@@ -549,7 +634,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="content-section">
+      {/* <section className="content-section">
         <div className="section-number">04</div>
         <div className="section-body">
           <p className="section-kicker">Release principles</p>
@@ -562,9 +647,9 @@ export default function Home() {
             <article><strong>Practical deployment</strong><p>Optimize releases for developers building real African language products.</p></article>
           </div>
         </div>
-      </section>
+      </section> */}
 
-      <section className="citation-section" id="citation">
+      {/* <section className="citation-section" id="citation">
         <div>
           <p className="section-kicker">Citation</p>
           <h2>Build with Griot.<br />Cite the work.</h2>
@@ -585,7 +670,7 @@ export default function Home() {
   note   = {Bivariant open-source African
             language model initiative}
 }`}</code></pre>
-      </section>
+      </section> */}
 
       <section className="bivariant-section">
         <p>Research and engineering by</p>
