@@ -94,11 +94,11 @@ Country references indicate representative speech communities, not an exhaustive
 
 Release documentation:
 
-**[`models/machine-translation/`](https://github.com/bivariant/Griot/tree/main/models/machine-translation/)**
+**[`models/machine-translation/`](**https://github.com/bivariant/Griot/tree/main/models/machine-translation/**)**
 
 Model repository:
 
-**[Hugging Face: `bivariant/griot-mt`](https://huggingface.co/bivariant/griot-mt)**
+**[Hugging Face: `bivariant/griot-mt`](**https://huggingface.co/bivariant/griot-mt**)**
 
 ---
 
@@ -109,7 +109,7 @@ Model repository:
 Griot-MT was evaluated against two widely used translation baselines:
 
 - **NLLB-200 1.3B**
-- **Google Translate**
+- **Google Cloud Translation**
 
 The same held-out test pairs are used for every system for each language and direction.
 
@@ -138,6 +138,8 @@ This makes the global score measure both **translation quality and practical lan
 
 A second evaluation compares Griot-MT and each baseline **only on the exact directions supported by that baseline**. This isolates translation quality from coverage.
 
+For **Google Cloud Translation**, language support was validated by direct live translation-pair calls to the **Cloud Translation v2 API**. The final evaluated endpoint supports **28 / 36 directions (14 / 18 languages)** in this benchmark. Baatonou, Ewondo, Mooré and Sar are unsupported by that endpoint and therefore receive zero in the coverage-aware view.
+
 > These results are measured on Bivariant's held-out evaluation split. They should be interpreted as results for this benchmark protocol, not as universal claims across every domain, dialect or external dataset.
 
 ---
@@ -148,7 +150,7 @@ A second evaluation compares Griot-MT and each baseline **only on the exact dire
 |---|---:|---:|---:|---:|
 | **Griot-MT** | **38.1061** | **58.0000** | **36 / 36** | **100.00%** |
 | NLLB-200 1.3B | 16.1319 | 33.5317 | 26 / 36 | 72.22% |
-| Google Translate | 11.0172 | 25.1086 | 20 / 36 | 55.56% |
+| Google Cloud Translation | 15.0325 | 33.9702 | 28 / 36 | 77.78% |
 
 <p align="center">
   <img src="./griot_mt_benchmark_visualizations/01_global/global_bleu_macro36.png" alt="Global BLEU benchmark across 36 directions" width="860" />
@@ -164,7 +166,7 @@ A second evaluation compares Griot-MT and each baseline **only on the exact dire
   <img src="./griot_mt_benchmark_visualizations/01_global/coverage.png" alt="Translation direction coverage" width="860" />
 </p>
 
-Griot-MT covers **all 36 translation directions** in the release. NLLB-200 1.3B covers 26 of the 36 evaluated directions, while Google Translate covers 20.
+Griot-MT covers **all 36 translation directions** in the release. NLLB-200 1.3B covers 26 of the 36 evaluated directions, while Google Cloud Translation covers 28.
 
 ---
 
@@ -176,8 +178,8 @@ Griot-MT covers **all 36 translation directions** in the release. NLLB-200 1.3B 
 | **Griot-MT** | French → African | **28.1986** | **51.8012** | **18 / 18** |
 | NLLB-200 1.3B | African → French | 17.3772 | 33.9561 | 13 / 18 |
 | NLLB-200 1.3B | French → African | 14.8865 | 33.1073 | 13 / 18 |
-| Google Translate | African → French | 13.6911 | 26.6222 | 10 / 18 |
-| Google Translate | French → African | 8.3433 | 23.5949 | 10 / 18 |
+| Google Cloud Translation | African → French | 18.2769 | 36.0616 | 14 / 18 |
+| Google Cloud Translation | French → African | 11.7881 | 31.8788 | 14 / 18 |
 
 <p align="center">
   <img src="./griot_mt_benchmark_visualizations/02_directions/bleu_by_direction.png" alt="BLEU by translation direction" width="900" />
@@ -197,7 +199,15 @@ This view removes the zero-score penalty for unsupported directions and averages
 |---|---:|---:|---:|
 | **Griot-MT** | **38.1061** | **58.0000** | 36 |
 | NLLB-200 1.3B | 22.3364 | 46.4285 | 26 |
-| Google Translate | 19.8309 | 45.1954 | 20 |
+| Google Cloud Translation | 19.3275 | 43.6760 | 28 |
+
+<p align="center">
+  <img src="./griot_mt_benchmark_visualizations/03_supported_only/supported_only_bleu.png" alt="BLEU on supported directions only" width="860" />
+</p>
+
+<p align="center">
+  <img src="./griot_mt_benchmark_visualizations/03_supported_only/supported_only_chrfpp.png" alt="chrF++ on supported directions only" width="860" />
+</p>
 
 ---
 
@@ -211,30 +221,30 @@ The comparison below uses **exactly the same 26 directions supported by NLLB-200
 | NLLB-200 1.3B | 22.3364 | 46.4285 | 26 |
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/03_matched_support/griot_vs_nllb_bleu.png" alt="Griot-MT vs NLLB matched-support BLEU" width="820" />
+  <img src="./griot_mt_benchmark_visualizations/04_matched_support/griot_vs_nllb_bleu.png" alt="Griot-MT vs NLLB matched-support BLEU" width="820" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/03_matched_support/griot_vs_nllb_chrfpp.png" alt="Griot-MT vs NLLB matched-support chrF++" width="820" />
+  <img src="./griot_mt_benchmark_visualizations/04_matched_support/griot_vs_nllb_chrfpp.png" alt="Griot-MT vs NLLB matched-support chrF++" width="820" />
 </p>
 
 ---
 
-## Matched-support comparison — Griot-MT vs Google Translate
+## Matched-support comparison — Griot-MT vs Google Cloud Translation
 
-The comparison below uses **exactly the same 20 directions supported by Google Translate**.
+The comparison below uses **exactly the same 28 directions supported by Google Cloud Translation**.
 
 | Model | BLEU | chrF++ | Directions |
 |---|---:|---:|---:|
-| **Griot-MT** | **41.6230** | **61.8333** | 20 |
-| Google Translate | 19.8309 | 45.1954 | 20 |
+| **Griot-MT** | **39.5908** | **59.5832** | 28 |
+| Google Cloud Translation | 19.3275 | 43.6760 | 28 |
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/03_matched_support/griot_vs_google_bleu.png" alt="Griot-MT vs Google Translate matched-support BLEU" width="820" />
+  <img src="./griot_mt_benchmark_visualizations/04_matched_support/griot_vs_google_bleu.png" alt="Griot-MT vs Google Cloud Translation matched-support BLEU" width="820" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/03_matched_support/griot_vs_google_chrfpp.png" alt="Griot-MT vs Google Translate matched-support chrF++" width="820" />
+  <img src="./griot_mt_benchmark_visualizations/04_matched_support/griot_vs_google_chrfpp.png" alt="Griot-MT vs Google Cloud Translation matched-support chrF++" width="820" />
 </p>
 
 The matched-support results show that the global Griot-MT advantage is **not explained only by broader language coverage**: Griot-MT also achieves higher aggregate BLEU and chrF++ when evaluated on the exact same supported directions as each baseline.
@@ -246,13 +256,13 @@ The matched-support results show that the global Griot-MT advantage is **not exp
 ### BLEU
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/06_language_comparison/all_languages_bleu.png" alt="BLEU comparison across all Griot-MT languages" width="1000" />
+  <img src="./griot_mt_benchmark_visualizations/07_language_comparison/all_languages_bleu.png" alt="BLEU comparison across all Griot-MT languages" width="1000" />
 </p>
 
 ### chrF++
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/06_language_comparison/all_languages_chrfpp.png" alt="chrF++ comparison across all Griot-MT languages" width="1000" />
+  <img src="./griot_mt_benchmark_visualizations/07_language_comparison/all_languages_chrfpp.png" alt="chrF++ comparison across all Griot-MT languages" width="1000" />
 </p>
 
 ---
@@ -267,235 +277,253 @@ Each language below includes the two benchmark views:
 The plots dynamically reflect the persisted benchmark results used for the release.
 
 <details>
+
 <summary><strong>01 · Baatonou (`bba`)</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/04_languages/bba/bba_bleu.png" alt="Baatonou BLEU benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/bba/bba_bleu.png" alt="Baatonou BLEU benchmark" width="900" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/04_languages/bba/bba_chrfpp.png" alt="Baatonou chrF++ benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/bba/bba_chrfpp.png" alt="Baatonou chrF++ benchmark" width="900" />
 </p>
 
 </details>
 
 <details>
+
 <summary><strong>02 · Baoulé (`bci`)</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/04_languages/bci/bci_bleu.png" alt="Baoulé BLEU benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/bci/bci_bleu.png" alt="Baoulé BLEU benchmark" width="900" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/04_languages/bci/bci_chrfpp.png" alt="Baoulé chrF++ benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/bci/bci_chrfpp.png" alt="Baoulé chrF++ benchmark" width="900" />
 </p>
 
 </details>
 
 <details>
+
 <summary><strong>03 · Dioula (`dyu`)</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/04_languages/dyu/dyu_bleu.png" alt="Dioula BLEU benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/dyu/dyu_bleu.png" alt="Dioula BLEU benchmark" width="900" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/04_languages/dyu/dyu_chrfpp.png" alt="Dioula chrF++ benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/dyu/dyu_chrfpp.png" alt="Dioula chrF++ benchmark" width="900" />
 </p>
 
 </details>
 
 <details>
+
 <summary><strong>04 · Ewé (`ewe`)</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/04_languages/ewe/ewe_bleu.png" alt="Ewé BLEU benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/ewe/ewe_bleu.png" alt="Ewé BLEU benchmark" width="900" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/04_languages/ewe/ewe_chrfpp.png" alt="Ewé chrF++ benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/ewe/ewe_chrfpp.png" alt="Ewé chrF++ benchmark" width="900" />
 </p>
 
 </details>
 
 <details>
+
 <summary><strong>05 · Ewondo (`ewo`)</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/04_languages/ewo/ewo_bleu.png" alt="Ewondo BLEU benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/ewo/ewo_bleu.png" alt="Ewondo BLEU benchmark" width="900" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/04_languages/ewo/ewo_chrfpp.png" alt="Ewondo chrF++ benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/ewo/ewo_chrfpp.png" alt="Ewondo chrF++ benchmark" width="900" />
 </p>
 
 </details>
 
 <details>
+
 <summary><strong>06 · Fon (`fon`)</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/04_languages/fon/fon_bleu.png" alt="Fon BLEU benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/fon/fon_bleu.png" alt="Fon BLEU benchmark" width="900" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/04_languages/fon/fon_chrfpp.png" alt="Fon chrF++ benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/fon/fon_chrfpp.png" alt="Fon chrF++ benchmark" width="900" />
 </p>
 
 </details>
 
 <details>
+
 <summary><strong>07 · Fulfulde (`fub`)</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/04_languages/fub/fub_bleu.png" alt="Fulfulde BLEU benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/fub/fub_bleu.png" alt="Fulfulde BLEU benchmark" width="900" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/04_languages/fub/fub_chrfpp.png" alt="Fulfulde chrF++ benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/fub/fub_chrfpp.png" alt="Fulfulde chrF++ benchmark" width="900" />
 </p>
 
 </details>
 
 <details>
+
 <summary><strong>08 · Hausa (`hau`)</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/04_languages/hau/hau_bleu.png" alt="Hausa BLEU benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/hau/hau_bleu.png" alt="Hausa BLEU benchmark" width="900" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/04_languages/hau/hau_chrfpp.png" alt="Hausa chrF++ benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/hau/hau_chrfpp.png" alt="Hausa chrF++ benchmark" width="900" />
 </p>
 
 </details>
 
 <details>
+
 <summary><strong>09 · Lingala (`lin`)</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/04_languages/lin/lin_bleu.png" alt="Lingala BLEU benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/lin/lin_bleu.png" alt="Lingala BLEU benchmark" width="900" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/04_languages/lin/lin_chrfpp.png" alt="Lingala chrF++ benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/lin/lin_chrfpp.png" alt="Lingala chrF++ benchmark" width="900" />
 </p>
 
 </details>
 
 <details>
+
 <summary><strong>10 · Luganda (`lug`)</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/04_languages/lug/lug_bleu.png" alt="Luganda BLEU benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/lug/lug_bleu.png" alt="Luganda BLEU benchmark" width="900" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/04_languages/lug/lug_chrfpp.png" alt="Luganda chrF++ benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/lug/lug_chrfpp.png" alt="Luganda chrF++ benchmark" width="900" />
 </p>
 
 </details>
 
 <details>
+
 <summary><strong>11 · Mooré (`mos`)</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/04_languages/mos/mos_bleu.png" alt="Mooré BLEU benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/mos/mos_bleu.png" alt="Mooré BLEU benchmark" width="900" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/04_languages/mos/mos_chrfpp.png" alt="Mooré chrF++ benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/mos/mos_chrfpp.png" alt="Mooré chrF++ benchmark" width="900" />
 </p>
 
 </details>
 
 <details>
+
 <summary><strong>12 · Sar (`mwm`)</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/04_languages/mwm/mwm_bleu.png" alt="Sar BLEU benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/mwm/mwm_bleu.png" alt="Sar BLEU benchmark" width="900" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/04_languages/mwm/mwm_chrfpp.png" alt="Sar chrF++ benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/mwm/mwm_chrfpp.png" alt="Sar chrF++ benchmark" width="900" />
 </p>
 
 </details>
 
 <details>
+
 <summary><strong>13 · Oromo (`orm`)</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/04_languages/orm/orm_bleu.png" alt="Oromo BLEU benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/orm/orm_bleu.png" alt="Oromo BLEU benchmark" width="900" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/04_languages/orm/orm_chrfpp.png" alt="Oromo chrF++ benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/orm/orm_chrfpp.png" alt="Oromo chrF++ benchmark" width="900" />
 </p>
 
 </details>
 
 <details>
+
 <summary><strong>14 · Sango (`sag`)</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/04_languages/sag/sag_bleu.png" alt="Sango BLEU benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/sag/sag_bleu.png" alt="Sango BLEU benchmark" width="900" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/04_languages/sag/sag_chrfpp.png" alt="Sango chrF++ benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/sag/sag_chrfpp.png" alt="Sango chrF++ benchmark" width="900" />
 </p>
 
 </details>
 
 <details>
+
 <summary><strong>15 · Shona (`sna`)</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/04_languages/sna/sna_bleu.png" alt="Shona BLEU benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/sna/sna_bleu.png" alt="Shona BLEU benchmark" width="900" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/04_languages/sna/sna_chrfpp.png" alt="Shona chrF++ benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/sna/sna_chrfpp.png" alt="Shona chrF++ benchmark" width="900" />
 </p>
 
 </details>
 
 <details>
+
 <summary><strong>16 · Somali (`som`)</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/04_languages/som/som_bleu.png" alt="Somali BLEU benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/som/som_bleu.png" alt="Somali BLEU benchmark" width="900" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/04_languages/som/som_chrfpp.png" alt="Somali chrF++ benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/som/som_chrfpp.png" alt="Somali chrF++ benchmark" width="900" />
 </p>
 
 </details>
 
 <details>
+
 <summary><strong>17 · Swahili (`swh`)</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/04_languages/swh/swh_bleu.png" alt="Swahili BLEU benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/swh/swh_bleu.png" alt="Swahili BLEU benchmark" width="900" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/04_languages/swh/swh_chrfpp.png" alt="Swahili chrF++ benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/swh/swh_chrfpp.png" alt="Swahili chrF++ benchmark" width="900" />
 </p>
 
 </details>
 
 <details>
+
 <summary><strong>18 · Wolof (`wol`)</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/04_languages/wol/wol_bleu.png" alt="Wolof BLEU benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/wol/wol_bleu.png" alt="Wolof BLEU benchmark" width="900" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/04_languages/wol/wol_chrfpp.png" alt="Wolof chrF++ benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/wol/wol_chrfpp.png" alt="Wolof chrF++ benchmark" width="900" />
 </p>
 
 </details>
@@ -505,40 +533,43 @@ The plots dynamically reflect the persisted benchmark results used for the relea
 ## Benchmark heatmaps
 
 <details>
+
 <summary><strong>Griot-MT heatmaps</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_heatmaps/griot-mt_bleu.png" alt="Griot-MT BLEU heatmap" width="820" />
+  <img src="./griot_mt_benchmark_visualizations/06_heatmaps/griot-mt_bleu.png" alt="Griot-MT BLEU heatmap" width="820" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_heatmaps/griot-mt_chrfpp.png" alt="Griot-MT chrF++ heatmap" width="820" />
+  <img src="./griot_mt_benchmark_visualizations/06_heatmaps/griot-mt_chrfpp.png" alt="Griot-MT chrF++ heatmap" width="820" />
 </p>
 
 </details>
 
 <details>
+
 <summary><strong>NLLB-200 1.3B heatmaps</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_heatmaps/nllb-200-1.3b_bleu.png" alt="NLLB-200 BLEU heatmap" width="820" />
+  <img src="./griot_mt_benchmark_visualizations/06_heatmaps/nllb-200-1.3b_bleu.png" alt="NLLB-200 BLEU heatmap" width="820" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_heatmaps/nllb-200-1.3b_chrfpp.png" alt="NLLB-200 chrF++ heatmap" width="820" />
+  <img src="./griot_mt_benchmark_visualizations/06_heatmaps/nllb-200-1.3b_chrfpp.png" alt="NLLB-200 chrF++ heatmap" width="820" />
 </p>
 
 </details>
 
 <details>
-<summary><strong>Google Translate heatmaps</strong></summary>
+
+<summary><strong>Google Cloud Translation heatmaps</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_heatmaps/google-translate_bleu.png" alt="Google Translate BLEU heatmap" width="820" />
+  <img src="./griot_mt_benchmark_visualizations/06_heatmaps/google-translate-v2-real_bleu.png" alt="Google Cloud Translation BLEU heatmap" width="820" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_heatmaps/google-translate_chrfpp.png" alt="Google Translate chrF++ heatmap" width="820" />
+  <img src="./griot_mt_benchmark_visualizations/06_heatmaps/google-translate-v2-real_chrfpp.png" alt="Google Cloud Translation chrF++ heatmap" width="820" />
 </p>
 
 </details>
@@ -556,21 +587,21 @@ Positive values indicate an advantage for Griot-MT.
 ### Against NLLB-200 1.3B
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/07_delta/griot_vs_nllb-200-1.3b_bleu_delta.png" alt="Griot-MT BLEU advantage over NLLB" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/08_delta/griot_vs_nllb-200-1.3b_bleu_delta.png" alt="Griot-MT BLEU advantage over NLLB" width="900" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/07_delta/griot_vs_nllb-200-1.3b_chrfpp_delta.png" alt="Griot-MT chrF++ advantage over NLLB" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/08_delta/griot_vs_nllb-200-1.3b_chrfpp_delta.png" alt="Griot-MT chrF++ advantage over NLLB" width="900" />
 </p>
 
-### Against Google Translate
+### Against Google Cloud Translation
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/07_delta/griot_vs_google-translate_bleu_delta.png" alt="Griot-MT BLEU advantage over Google Translate" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/08_delta/griot_vs_google-translate-v2-real_bleu_delta.png" alt="Griot-MT BLEU advantage over Google Cloud Translation" width="900" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/07_delta/griot_vs_google-translate_chrfpp_delta.png" alt="Griot-MT chrF++ advantage over Google Translate" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/08_delta/griot_vs_google-translate-v2-real_chrfpp_delta.png" alt="Griot-MT chrF++ advantage over Google Cloud Translation" width="900" />
 </p>
 
 ---
@@ -581,8 +612,11 @@ The figure bundle also contains the CSV data used to generate the visualizations
 
 - [`metrics_used_for_figures.csv`](./griot_mt_benchmark_visualizations/data/metrics_used_for_figures.csv)
 - [`global_leaderboard.csv`](./griot_mt_benchmark_visualizations/data/global_leaderboard.csv)
+- [`supported_only_scores.csv`](./griot_mt_benchmark_visualizations/data/supported_only_scores.csv)
 - [`language_macro_scores.csv`](./griot_mt_benchmark_visualizations/data/language_macro_scores.csv)
 - [`direction_scores.csv`](./griot_mt_benchmark_visualizations/data/direction_scores.csv)
+- [`griot_vs_nllb_matched_support.csv`](./griot_mt_benchmark_visualizations/data/griot_vs_nllb_matched_support.csv)
+- [`griot_vs_google_matched_support.csv`](./griot_mt_benchmark_visualizations/data/griot_vs_google_matched_support.csv)
 
 Expected local repository layout:
 
@@ -591,11 +625,12 @@ README.md
 griot_mt_benchmark_visualizations/
 ├── 01_global/
 ├── 02_directions/
-├── 03_matched_support/
-├── 04_languages/
-├── 05_heatmaps/
-├── 06_language_comparison/
-├── 07_delta/
+├── 03_supported_only/
+├── 04_matched_support/
+├── 05_languages/
+├── 06_heatmaps/
+├── 07_language_comparison/
+├── 08_delta/
 └── data/
 ```
 
@@ -613,7 +648,6 @@ The example below runs **French → Baatonou (`bba`)** using only artifacts publ
 
 ```bash
 pip uninstall -y torchao
-
 pip install -q \
   "transformers==5.16.1" \
   "peft==0.20.0" \
@@ -627,15 +661,12 @@ pip install -q \
 
 ```python
 from pathlib import Path
-
 import torch
 from huggingface_hub import snapshot_download
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 from peft import PeftModel
-
 REPO = "bivariant/griot-mt"
 TEXT = "Bonjour, comment allez-vous aujourd'hui ?"
-
 path = snapshot_download(
     REPO,
     allow_patterns=[
@@ -648,7 +679,6 @@ path = snapshot_download(
         "adapters/bba/adapter_model.safetensors",
     ],
 )
-
 device = (
     "cuda"
     if torch.cuda.is_available()
@@ -656,33 +686,27 @@ device = (
     if torch.backends.mps.is_available()
     else "cpu"
 )
-
 dtype = torch.float16 if device != "cpu" else torch.float32
-
 tokenizer = AutoTokenizer.from_pretrained(
     path,
     local_files_only=True,
 )
 tokenizer.src_lang = "fra_Latn"
-
 base = AutoModelForSeq2SeqLM.from_pretrained(
     path,
     local_files_only=True,
     dtype=dtype,
     low_cpu_mem_usage=True,
 )
-
 model = PeftModel.from_pretrained(
     base,
     Path(path) / "adapters" / "bba",
     is_trainable=False,
 ).to(device).eval()
-
 inputs = tokenizer(
     TEXT,
     return_tensors="pt",
 ).to(device)
-
 with torch.inference_mode():
     output = model.generate(
         **inputs,
@@ -690,7 +714,6 @@ with torch.inference_mode():
             "bba_Latn"
         ),
     )
-
 print("FR :", TEXT)
 print(
     "BBA:",
