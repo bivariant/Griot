@@ -1,6 +1,6 @@
 model,direction,direction_label,BLEU,chrFpp
-Google Translate,african_to_french,African → French,13.691073514300028,26.62224331222453
-Google Translate,french_to_african,French → African,8.343294951430448,23.594906781562866
+Google Cloud Translation,african_to_french,African → French,18.2769113901479,36.061594134756106
+Google Cloud Translation,french_to_african,French → African,11.788061737496252,31.878775696899115
 Griot-MT,african_to_french,African → French,48.01362935158937,64.19884431175224
 Griot-MT,french_to_african,French → African,28.19860122286819,51.801203608455836
 NLLB-200 1.3B,african_to_french,African → French,17.377200031655505,33.95607866578764

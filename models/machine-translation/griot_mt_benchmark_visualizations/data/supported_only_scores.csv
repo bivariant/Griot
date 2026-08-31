@@ -1,0 +1,4 @@
+model,model_slug,BLEU,chrFpp,directions
+Google Cloud Translation,google-translate-v2-real,19.3274827249141,43.67595203463549,28
+Griot-MT,griot-mt,38.10611528722878,58.00002396010403,36
+NLLB-200 1.3B,nllb-200-1.3b,22.336416202700967,46.42850220609149,26
