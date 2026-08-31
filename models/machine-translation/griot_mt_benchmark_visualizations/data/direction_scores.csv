@@ -1,0 +1,7 @@
+model,direction,direction_label,BLEU,chrFpp
+Google Translate,african_to_french,African → French,13.691073514300028,26.62224331222453
+Google Translate,french_to_african,French → African,8.343294951430448,23.594906781562866
+Griot-MT,african_to_french,African → French,48.01362935158937,64.19884431175224
+Griot-MT,french_to_african,French → African,28.19860122286819,51.801203608455836
+NLLB-200 1.3B,african_to_french,African → French,17.377200031655505,33.95607866578764
+NLLB-200 1.3B,french_to_african,French → African,14.88651226113478,33.10731340967785
