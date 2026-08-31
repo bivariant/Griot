@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+
 import { FaFilePdf, FaGithub } from "react-icons/fa6";
 import { SiArxiv } from "react-icons/si";
 import { SiHuggingface } from "react-icons/si";
@@ -11,7 +12,7 @@ type Language = {
 
 type MTBenchmark = {
   model: string;
-  access: "Open" | "API";
+  access: "Ouvert" | "API";
   bleu: number;
   chrf: number;
   note?: string;
@@ -20,7 +21,7 @@ type MTBenchmark = {
 
 type ASRBenchmark = {
   model: string;
-  access: "Open" | "API";
+  access: "Ouvert" | "API";
   wer: number;
   cer: number;
   note?: string;
@@ -28,89 +29,144 @@ type ASRBenchmark = {
 };
 
 const languages: Language[] = [
-  { code: "bba", name: "Baatonou", regions: ["Benin", "Nigeria"] },
+  { code: "bba", name: "Baatonou", regions: ["Bénin", "Nigeria"] },
   { code: "bci", name: "Baoulé", regions: ["Côte d’Ivoire"] },
   { code: "dyu", name: "Dioula", regions: ["Côte d’Ivoire", "Burkina Faso", "Mali"] },
   { code: "ewe", name: "Ewé", regions: ["Togo", "Ghana"] },
-  { code: "ewo", name: "Ewondo", regions: ["Cameroon"] },
-  { code: "fon", name: "Fon", regions: ["Benin", "Togo"] },
-  { code: "fub", name: "Fulfulde", regions: ["Cameroon", "Nigeria", "Niger", "Guinea", "Mali", "Senegal"] },
-  { code: "hau", name: "Hausa", regions: ["Nigeria", "Niger", "Ghana", "Cameroon", "Chad"] },
-  { code: "lin", name: "Lingala", regions: ["DR Congo", "Republic of the Congo", "Angola", "Central African Republic"] },
-  { code: "lug", name: "Luganda", regions: ["Uganda"] },
+  { code: "ewo", name: "Ewondo", regions: ["Cameroun"] },
+  { code: "fon", name: "Fon", regions: ["Bénin", "Togo"] },
+  {
+    code: "fub",
+    name: "Fulfulde",
+    regions: ["Cameroun", "Nigeria", "Niger", "Guinée", "Mali", "Sénégal"],
+  },
+  {
+    code: "hau",
+    name: "Hausa",
+    regions: ["Nigeria", "Niger", "Ghana", "Cameroun", "Tchad"],
+  },
+  {
+    code: "lin",
+    name: "Lingala",
+    regions: ["RDC", "République du Congo", "Angola", "République centrafricaine"],
+  },
+  { code: "lug", name: "Luganda", regions: ["Ouganda"] },
   { code: "mos", name: "Mooré", regions: ["Burkina Faso"] },
-  { code: "mwm", name: "Sar", regions: ["Chad"] },
-  { code: "orm", name: "Oromo", regions: ["Ethiopia", "Kenya"] },
-  { code: "sag", name: "Sango", regions: ["Central African Republic"] },
+  { code: "mwm", name: "Sar", regions: ["Tchad"] },
+  { code: "orm", name: "Oromo", regions: ["Éthiopie", "Kenya"] },
+  { code: "sag", name: "Sango", regions: ["République centrafricaine"] },
   { code: "sna", name: "Shona", regions: ["Zimbabwe", "Mozambique"] },
-  { code: "som", name: "Somali", regions: ["Somalia", "Ethiopia", "Kenya", "Djibouti"] },
-  { code: "swh", name: "Swahili", regions: ["Tanzania", "Kenya", "DR Congo", "Uganda", "Rwanda", "Burundi"] },
-  { code: "wol", name: "Wolof", regions: ["Senegal", "The Gambia"] },
+  { code: "som", name: "Somali", regions: ["Somalie", "Éthiopie", "Kenya", "Djibouti"] },
+  {
+    code: "swh",
+    name: "Swahili",
+    regions: ["Tanzanie", "Kenya", "RDC", "Ouganda", "Rwanda", "Burundi"],
+  },
+  { code: "wol", name: "Wolof", regions: ["Sénégal", "Gambie"] },
 ];
 
 const representativeCountries = [
-  "Benin", "Burkina Faso", "Cameroon", "Central African Republic", "Chad",
-  "Côte d’Ivoire", "DR Congo", "Djibouti", "Ethiopia", "Ghana", "Guinea",
-  "Kenya", "Mali", "Mozambique", "Niger", "Nigeria", "Republic of the Congo",
-  "Rwanda", "Senegal", "Somalia", "Tanzania", "The Gambia", "Togo", "Uganda",
+  "Bénin",
+  "Burkina Faso",
+  "Cameroun",
+  "République centrafricaine",
+  "Tchad",
+  "Côte d’Ivoire",
+  "RDC",
+  "Djibouti",
+  "Éthiopie",
+  "Ghana",
+  "Guinée",
+  "Kenya",
+  "Mali",
+  "Mozambique",
+  "Niger",
+  "Nigeria",
+  "République du Congo",
+  "Rwanda",
+  "Sénégal",
+  "Somalie",
+  "Tanzanie",
+  "Gambie",
+  "Togo",
+  "Ouganda",
   "Zimbabwe",
 ];
 
 /*
-  IMPORTANT:
-  These benchmark values are synthetic presentation data only.
-  Replace every value with reproducible evaluation results before publication.
+  IMPORTANT :
+  Ces valeurs de benchmark sont uniquement des données synthétiques de présentation.
+  Remplacez chaque valeur par des résultats d’évaluation reproductibles avant publication.
 */
 const mtBenchmark: MTBenchmark[] = [
-  { model: "Griot-MT", access: "Open", bleu: 29.8, chrf: 54.7, highlight: true, note: "Synthetic preview" },
+  {
+    model: "Griot-MT",
+    access: "Ouvert",
+    bleu: 29.8,
+    chrf: 54.7,
+    highlight: true,
+    note: "Aperçu synthétique",
+  },
   { model: "Google Translate", access: "API", bleu: 26.9, chrf: 51.2 },
   { model: "Gemini", access: "API", bleu: 26.1, chrf: 50.8 },
-  { model: "NLLB-200 3.3B", access: "Open", bleu: 24.7, chrf: 48.9 },
-  { model: "MADLAD-400 10B", access: "Open", bleu: 23.8, chrf: 47.6 },
-  { model: "SeamlessM4T-v2 Large", access: "Open", bleu: 22.9, chrf: 46.4 },
+  { model: "NLLB-200 3.3B", access: "Ouvert", bleu: 24.7, chrf: 48.9 },
+  { model: "MADLAD-400 10B", access: "Ouvert", bleu: 23.8, chrf: 47.6 },
+  { model: "SeamlessM4T-v2 Large", access: "Ouvert", bleu: 22.9, chrf: 46.4 },
 ];
 
 const asrBenchmark: ASRBenchmark[] = [
-  { model: "Griot-ASR", access: "Open", wer: 13.8, cer: 6.4, highlight: true, note: "Synthetic preview" },
+  {
+    model: "Griot-ASR",
+    access: "Ouvert",
+    wer: 13.8,
+    cer: 6.4,
+    highlight: true,
+    note: "Aperçu synthétique",
+  },
   { model: "Google Speech-to-Text", access: "API", wer: 18.9, cer: 9.8 },
-  { model: "Whisper large-v3", access: "Open", wer: 19.7, cer: 10.3 },
-  { model: "SeamlessM4T-v2 Large", access: "Open", wer: 21.4, cer: 11.3 },
-  { model: "MMS-1B-All", access: "Open", wer: 22.5, cer: 12.1 },
+  { model: "Whisper large-v3", access: "Ouvert", wer: 19.7, cer: 10.3 },
+  { model: "SeamlessM4T-v2 Large", access: "Ouvert", wer: 21.4, cer: 11.3 },
+  { model: "MMS-1B-All", access: "Ouvert", wer: 22.5, cer: 12.1 },
 ];
 
 const publicBenchmarks = [
   {
     name: "FLORES-200",
-    task: "Machine Translation",
-    description: "Public multilingual evaluation data for comparable translation evaluation across languages.",
+    task: "Traduction automatique",
+    description:
+      "Données publiques d’évaluation multilingue permettant de comparer les performances de traduction entre plusieurs langues.",
     href: "https://huggingface.co/datasets/facebook/flores",
     metrics: "BLEU · chrF++",
   },
   {
     name: "FLEURS",
-    task: "Automatic Speech Recognition",
-    description: "Public multilingual speech benchmark useful for cross-language ASR evaluation.",
+    task: "Reconnaissance automatique de la parole",
+    description:
+      "Benchmark public multilingue de parole, utile pour l’évaluation ASR entre plusieurs langues.",
     href: "https://huggingface.co/datasets/google/fleurs",
     metrics: "WER · CER",
   },
   {
     name: "Mozilla Common Voice",
-    task: "Automatic Speech Recognition",
-    description: "Community-contributed open speech data. Availability varies by language and release.",
+    task: "Reconnaissance automatique de la parole",
+    description:
+      "Données vocales ouvertes et contributives. La disponibilité varie selon la langue et la version publiée.",
     href: "https://commonvoice.mozilla.org/en/datasets",
     metrics: "WER · CER",
   },
   {
     name: "OPUS / JW300",
-    task: "Machine Translation",
-    description: "Public parallel corpora that can support held-out evaluation where target languages are available.",
+    task: "Traduction automatique",
+    description:
+      "Corpus parallèles publics pouvant servir à une évaluation tenue à l’écart lorsque les langues cibles sont disponibles.",
     href: "https://opus.nlpl.eu/JW300.php",
     metrics: "BLEU · chrF++",
   },
   {
     name: "Masakhane MT",
-    task: "Machine Translation",
-    description: "African machine-translation research ecosystem and evaluation resources.",
+    task: "Traduction automatique",
+    description:
+      "Écosystème de recherche et ressources d’évaluation dédiés à la traduction automatique des langues africaines.",
     href: "https://github.com/masakhane-io/masakhane-mt",
     metrics: "BLEU · chrF++",
   },
@@ -151,7 +207,13 @@ const ResourceButton = ({
 );
 
 const MetricArrow = ({ direction }: { direction: "up" | "down" }) => (
-  <span aria-label={direction === "up" ? "higher is better" : "lower is better"}>
+  <span
+    aria-label={
+      direction === "up"
+        ? "une valeur plus élevée est meilleure"
+        : "une valeur plus faible est meilleure"
+    }
+  >
     {direction === "up" ? "↑" : "↓"}
   </span>
 );
@@ -159,63 +221,110 @@ const MetricArrow = ({ direction }: { direction: "up" | "down" }) => (
 export default function Home() {
   return (
     <main id="top">
-      <nav className="paper-nav" aria-label="Project navigation">
-        <a className="nav-wordmark" href="#top">GRIOT</a>
+      <nav className="paper-nav" aria-label="Navigation du projet">
+        <a className="nav-wordmark" href="#top">
+          GRIOT
+        </a>
+
         <div>
-          <a href="#overview">Overview</a>
-          <a href="#models">Models</a>
+          <a href="#overview">Présentation</a>
+          <a href="#models">Modèles</a>
           <a href="#benchmarks">Benchmarks</a>
-          <a href="#evaluation">Evaluation</a>
-          <a href="#languages">Languages</a>
+          <a href="#evaluation">Évaluation</a>
+          <a href="#languages">Langues</a>
           <a href="#citation">Citation</a>
         </div>
       </nav>
 
       <section className="paper-hero">
         <img className="paper-logo" src="./images/griot-logo.png" alt="Griot" />
-        <p className="hero-eyebrow">Bivariant · Open African Language Models</p>
+
+        <p className="hero-eyebrow">
+          Bivariant · Modèles ouverts pour les langues africaines
+        </p>
 
         <h1>
-          <span>Griot:</span> Open Multilingual Intelligence
+          <span>Griot :</span> Intelligence multilingue ouverte
           <br />
-          for African Languages
+          pour les langues africaines
         </h1>
 
         <p className="paper-subtitle">
-          Open machine translation and automatic speech recognition models
-          built for 18 African languages, 36 translation directions and
-          communities representing more than 420 million speakers.
+          Modèles ouverts de traduction automatique et de reconnaissance
+          automatique de la parole conçus pour 18 langues africaines, 36
+          directions de traduction et des communautés représentant plus de
+          420 millions de locuteurs.
         </p>
 
         <div className="hero-stat-grid">
-          <div><strong>18</strong><span>African languages</span></div>
-          <div><strong>36</strong><span>MT directions</span></div>
-          <div><strong>420M+</strong><span>Speaker coverage</span></div>
-          <div><strong>25+</strong><span>Countries represented</span></div>
-          <div><strong>2</strong><span>Open model families</span></div>
+          <div>
+            <strong>18</strong>
+            <span>Langues africaines</span>
+          </div>
+          <div>
+            <strong>36</strong>
+            <span>Directions MT</span>
+          </div>
+          <div>
+            <strong>420M+</strong>
+            <span>Locuteurs potentiels couverts</span>
+          </div>
+          <div>
+            <strong>25+</strong>
+            <span>Pays représentés</span>
+          </div>
+          <div>
+            <strong>2</strong>
+            <span>Familles de modèles ouvertes</span>
+          </div>
         </div>
 
-        <div className="contributors" aria-label="Project contributors">
-          <span>Luc Alapini<sup>1</sup></span><span>·</span>
-          <span>Arnauld Adjovi<sup>1</sup></span><span>·</span>
-          <span>Dave Dassi<sup>1</sup></span><span>·</span>
-          <span>Johaness Hounton<sup>1</sup></span><span>·</span>
-          <span>Lucien TITO<sup>1</sup></span>
-          <span>Ahmed Adjibade<sup>1</sup></span>
-          <span>Joel Gnansounou<sup>1</sup></span>
-          <span>Marius Sègbè<sup>1</sup></span>
-          <span>Gloria Gado<sup>1</sup></span>
+        <div className="contributors" aria-label="Contributeurs du projet">
+          <span>
+            Luc Alapini<sup>1</sup>
+          </span>
+          <span>·</span>
+          <span>
+            Arnauld Adjovi<sup>1</sup>
+          </span>
+          <span>·</span>
+          <span>
+            Dave Dassi<sup>1</sup>
+          </span>
+          <span>·</span>
+          <span>
+            Johaness Hounton<sup>1</sup>
+          </span>
+          <span>·</span>
+          <span>
+            Lucien TITO<sup>1</sup>
+          </span>
+          <span>
+            Ahmed Adjibade<sup>1</sup>
+          </span>
+          <span>
+            Joel Gnansounou<sup>1</sup>
+          </span>
+          <span>
+            Marius Sègbè<sup>1</sup>
+          </span>
+          <span>
+            Gloria Gado<sup>1</sup>
+          </span>
         </div>
 
-        <p className="affiliation"><sup>1</sup>Bivariant · Cotonou, Benin</p>
-        <p className="release-line">Griot Open-Source Release · 2026</p>
+        <p className="affiliation">
+          <sup>1</sup>Bivariant · Cotonou, Bénin
+        </p>
 
-        <div className="paper-actions" aria-label="Project resources">
+        <p className="release-line">Release open source Griot · 2026</p>
+
+        <div className="paper-actions" aria-label="Ressources du projet">
           <ResourceButton
             href="#citation"
             icon={<FaFilePdf aria-hidden="true" />}
           >
-            Technical Report
+            Rapport technique
           </ResourceButton>
 
           <ResourceButton
@@ -241,61 +350,73 @@ export default function Home() {
         </div>
 
         <div className="hero-rule" />
+
         <p className="hero-note">
-          Machine Translation · Speech Recognition · Low-Resource Languages ·
-          Open Weights
+          Traduction automatique · Reconnaissance de la parole · Langues à
+          faibles ressources · Poids ouverts
         </p>
       </section>
 
-     <section className="content-section" id="overview">
+      <section className="content-section" id="overview">
         <div className="section-number">01</div>
 
         <div className="section-body">
-          <p className="section-kicker">Overview</p>
-          <h2>African language technology at continental scale.</h2>
+          <p className="section-kicker">Présentation</p>
+
+          <h2>
+            Des technologies linguistiques africaines à l’échelle du continent.
+          </h2>
 
           <div className="abstract-grid">
             <p>
-              Griot is Bivariant&apos;s open family of language models for African
-              languages. The first public release focuses on two foundational
-              capabilities: <strong>machine translation</strong> and{" "}
-              <strong>automatic speech recognition</strong>.
+              Griot est la famille ouverte de modèles de langage de Bivariant
+              pour les langues africaines. La première release publique se
+              concentre sur deux capacités fondamentales :{" "}
+              <strong>la traduction automatique</strong> et{" "}
+              <strong>la reconnaissance automatique de la parole</strong>.
             </p>
 
             <p>
-              The release supports 18 languages spanning West, Central, East,
-              Horn and Southern Africa, with a potential linguistic reach of
-              more than <strong>420 million speakers</strong>.
+              La release couvre 18 langues réparties en Afrique de l’Ouest,
+              centrale, de l’Est, dans la Corne de l’Afrique et en Afrique
+              australe, avec une portée linguistique potentielle de plus de{" "}
+              <strong>420 millions de locuteurs</strong>.
             </p>
 
             <p>
-              For machine translation, every supported African language is
-              available in both directions with French, producing{" "}
-              <strong>36 translation directions</strong>.
+              Pour la traduction automatique, chaque langue africaine prise en
+              charge est disponible dans les deux directions avec le français,
+              soit <strong>36 directions de traduction</strong>.
             </p>
 
             <p>
-              Griot is designed as an open release ecosystem: model weights,
-              LoRA adapters, inference code, evaluation scripts, benchmark
-              configuration and model cards are versioned together.
+              Griot est conçu comme un écosystème de release ouverte : poids des
+              modèles, adaptateurs LoRA, code d’inférence, scripts d’évaluation,
+              configuration des benchmarks et model cards sont versionnés
+              ensemble.
             </p>
           </div>
         </div>
-     </section>
+      </section>
 
       <section className="coverage-section">
         <div className="coverage-copy">
-          <p className="section-kicker light">Continental coverage</p>
-          <h2>Built for languages spoken across more than 25 African countries.</h2>
+          <p className="section-kicker light">Couverture continentale</p>
+
+          <h2>
+            Conçu pour des langues parlées dans plus de 25 pays africains.
+          </h2>
+
           <p>
-            Griot&apos;s language coverage connects major linguistic communities
-            from the Gulf of Guinea to the Sahel, Central Africa, the Horn of
-            Africa and Southern Africa.
+            La couverture linguistique de Griot relie de grandes communautés,
+            du golfe de Guinée au Sahel, en passant par l’Afrique centrale, la
+            Corne de l’Afrique et l’Afrique australe.
           </p>
+
           <p className="coverage-disclaimer">
-            Country references indicate representative speech communities and
-            are not intended as an exhaustive map of every country in which a
-            language is spoken.
+            Les pays indiqués correspondent à des communautés linguistiques
+            représentatives et ne constituent pas une cartographie exhaustive
+            de tous les pays dans lesquels une langue est parlée.
           </p>
         </div>
 
@@ -308,52 +429,79 @@ export default function Home() {
 
       <section className="models-section" id="models">
         <div className="models-copy">
-          <p className="section-kicker light">Model family</p>
-          <h2>Translate text.<br />Recognize speech.<br />Keep African languages central.</h2>
+          <p className="section-kicker light">Famille de modèles</p>
+
+          <h2>
+            Traduire le texte.
+            <br />
+            Reconnaître la parole.
+            <br />
+            Garder les langues africaines au centre.
+          </h2>
+
           <p>
-            Griot is a model family rather than a single checkpoint. Each
-            language is packaged as a dedicated LoRA adapter over a shared
-            multilingual backbone, with a common evaluation and documentation standard.
+            Griot est une famille de modèles plutôt qu’un checkpoint unique.
+            Chaque langue est distribuée sous la forme d’un adaptateur LoRA
+            dédié appliqué à un backbone multilingue partagé, avec un standard
+            commun d’évaluation et de documentation.
           </p>
         </div>
 
         <div className="model-papers">
           <article>
-            <span>01 · Machine Translation</span>
+            <span>01 · Traduction automatique</span>
+
             <h3>Griot-MT</h3>
+
             <p>
-              Bidirectional French translation across 18 African languages using
-              a shared multilingual base and language-specific LoRA adapters.
+              Traduction bidirectionnelle avec le français pour 18 langues
+              africaines, à partir d’une base multilingue partagée et
+              d’adaptateurs LoRA spécifiques à chaque langue.
             </p>
+
             <ul>
-              <li>18 African languages</li>
+              <li>18 langues africaines</li>
               <li>36 directions</li>
-              <li>LoRA adapter per language</li>
+              <li>Un adaptateur LoRA par langue</li>
               <li>BLEU + chrF++</li>
-              <li>Reproducible evaluation</li>
+              <li>Évaluation reproductible</li>
             </ul>
-            <a href="https://github.com/bivariant/Griot/tree/main/models/machine-translation" target="_blank" rel="noreferrer">
-              Open Griot-MT repository ↗
+
+            <a
+              href="https://github.com/bivariant/Griot/tree/main/models/machine-translation"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Ouvrir le dépôt Griot-MT ↗
             </a>
           </article>
 
           <article>
-            <span>02 · Automatic Speech Recognition</span>
+            <span>02 · Reconnaissance automatique de la parole</span>
+
             <h3>Griot-ASR</h3>
+
             <p>
-              Multilingual speech recognition for African speech using a shared
-              base and language-specific LoRA adapters, evaluated independently
-              for every supported language.
+              Reconnaissance multilingue de la parole africaine à partir d’une
+              base partagée et d’adaptateurs LoRA spécifiques à chaque langue,
+              avec une évaluation indépendante pour chaque langue prise en
+              charge.
             </p>
+
             <ul>
-              <li>18 African languages</li>
-              <li>LoRA adapter per language</li>
+              <li>18 langues africaines</li>
+              <li>Un adaptateur LoRA par langue</li>
               <li>WER + CER</li>
-              <li>Language-level reporting</li>
-              <li>Open decoding pipeline</li>
+              <li>Reporting par langue</li>
+              <li>Pipeline de décodage ouvert</li>
             </ul>
-            <a href="https://github.com/bivariant/Griot/tree/main/models/asr" target="_blank" rel="noreferrer">
-              Open Griot-ASR repository ↗
+
+            <a
+              href="https://github.com/bivariant/Griot/tree/main/models/asr"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Ouvrir le dépôt Griot-ASR ↗
             </a>
           </article>
         </div>
@@ -361,109 +509,185 @@ export default function Home() {
 
       {/* <section className="comparison-figure" id="benchmarks">
         <div className="figure-heading">
-          <span>Benchmark suite</span>
-          <strong>Griot against leading open and commercial multilingual systems.</strong>
+          <span>Suite de benchmarks</span>
+          <strong>
+            Griot face aux principaux systèmes multilingues ouverts et commerciaux.
+          </strong>
         </div>
 
         <div className="benchmark-warning">
-          <strong>DESIGN PREVIEW : SYNTHETIC RESULTS</strong>
+          <strong>APERÇU DE CONCEPTION : RÉSULTATS SYNTHÉTIQUES</strong>
           <p>
-            The numerical values displayed below are fictitious and exist only
-            to design the release page. Replace them with reproducible
-            evaluation results before publication.
+            Les valeurs numériques affichées ci-dessous sont fictives et servent
+            uniquement à concevoir la page de release. Remplacez-les par des
+            résultats d’évaluation reproductibles avant publication.
           </p>
         </div>
 
         <article className="benchmark-table-card">
           <header>
             <div>
-              <span>Machine Translation</span>
-              <h2>Macro-average benchmark</h2>
+              <span>Traduction automatique</span>
+              <h2>Benchmark en moyenne macro</h2>
             </div>
-            <small>BLEU <MetricArrow direction="up" /> · chrF++ <MetricArrow direction="up" /></small>
+            <small>
+              BLEU <MetricArrow direction="up" /> · chrF++{" "}
+              <MetricArrow direction="up" />
+            </small>
           </header>
 
           <div className="benchmark-table-wrapper">
             <table className="benchmark-table">
               <thead>
                 <tr>
-                  <th>Model</th><th>Access</th><th>BLEU ↑</th><th>chrF++ ↑</th>
+                  <th>Modèle</th>
+                  <th>Accès</th>
+                  <th>BLEU ↑</th>
+                  <th>chrF++ ↑</th>
                 </tr>
               </thead>
+
               <tbody>
                 {mtBenchmark.map((row) => (
-                  <tr key={row.model} className={row.highlight ? "benchmark-winner" : undefined}>
-                    <td><strong>{row.model}</strong>{row.note && <small>{row.note}</small>}</td>
-                    <td><span className={row.access === "Open" ? "access-badge open" : "access-badge api"}>{row.access}</span></td>
-                    <td><strong>{row.bleu.toFixed(1)}</strong></td>
-                    <td><strong>{row.chrf.toFixed(1)}</strong></td>
+                  <tr
+                    key={row.model}
+                    className={row.highlight ? "benchmark-winner" : undefined}
+                  >
+                    <td>
+                      <strong>{row.model}</strong>
+                      {row.note && <small>{row.note}</small>}
+                    </td>
+
+                    <td>
+                      <span
+                        className={
+                          row.access === "Ouvert"
+                            ? "access-badge open"
+                            : "access-badge api"
+                        }
+                      >
+                        {row.access}
+                      </span>
+                    </td>
+
+                    <td>
+                      <strong>{row.bleu.toFixed(1)}</strong>
+                    </td>
+
+                    <td>
+                      <strong>{row.chrf.toFixed(1)}</strong>
+                    </td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
+
           <p className="benchmark-caption">
-            Final publication should include per-language, per-direction and
-            per-dataset results, not only a macro-average.
+            La publication finale doit inclure des résultats par langue, par
+            direction et par dataset, et pas uniquement une moyenne macro.
           </p>
         </article>
 
         <article className="benchmark-table-card">
           <header>
             <div>
-              <span>Automatic Speech Recognition</span>
-              <h2>Macro-average benchmark</h2>
+              <span>Reconnaissance automatique de la parole</span>
+              <h2>Benchmark en moyenne macro</h2>
             </div>
-            <small>WER <MetricArrow direction="down" /> · CER <MetricArrow direction="down" /></small>
+            <small>
+              WER <MetricArrow direction="down" /> · CER{" "}
+              <MetricArrow direction="down" />
+            </small>
           </header>
 
           <div className="benchmark-table-wrapper">
             <table className="benchmark-table">
               <thead>
                 <tr>
-                  <th>Model</th><th>Access</th><th>WER ↓</th><th>CER ↓</th>
+                  <th>Modèle</th>
+                  <th>Accès</th>
+                  <th>WER ↓</th>
+                  <th>CER ↓</th>
                 </tr>
               </thead>
+
               <tbody>
                 {asrBenchmark.map((row) => (
-                  <tr key={row.model} className={row.highlight ? "benchmark-winner" : undefined}>
-                    <td><strong>{row.model}</strong>{row.note && <small>{row.note}</small>}</td>
-                    <td><span className={row.access === "Open" ? "access-badge open" : "access-badge api"}>{row.access}</span></td>
-                    <td><strong>{row.wer.toFixed(1)}</strong></td>
-                    <td><strong>{row.cer.toFixed(1)}</strong></td>
+                  <tr
+                    key={row.model}
+                    className={row.highlight ? "benchmark-winner" : undefined}
+                  >
+                    <td>
+                      <strong>{row.model}</strong>
+                      {row.note && <small>{row.note}</small>}
+                    </td>
+
+                    <td>
+                      <span
+                        className={
+                          row.access === "Ouvert"
+                            ? "access-badge open"
+                            : "access-badge api"
+                        }
+                      >
+                        {row.access}
+                      </span>
+                    </td>
+
+                    <td>
+                      <strong>{row.wer.toFixed(1)}</strong>
+                    </td>
+
+                    <td>
+                      <strong>{row.cer.toFixed(1)}</strong>
+                    </td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
+
           <p className="benchmark-caption">
-            Final results should document normalization, punctuation handling,
-            decoding settings and evaluation-set version.
+            Les résultats finaux doivent documenter la normalisation, la gestion
+            de la ponctuation, les paramètres de décodage et la version du jeu
+            d’évaluation.
           </p>
         </article>
       </section> */}
 
       {/* <section className="content-section baseline-section">
         <div className="section-number">02</div>
+
         <div className="section-body">
           <p className="section-kicker">Baselines</p>
-          <h2>Benchmark against systems people actually use.</h2>
+
+          <h2>Se comparer aux systèmes réellement utilisés.</h2>
+
           <p className="section-lead">
-            Compare against both open-weight research models and commercial
-            systems available to African users.
+            Comparer Griot à la fois à des modèles de recherche open-weight et à
+            des systèmes commerciaux accessibles aux utilisateurs africains.
           </p>
 
           <div className="baseline-grid">
             <article>
-              <span>Machine Translation</span>
-              <h3>Recommended baselines</h3>
-              <ul>{mtBaselines.map((baseline) => <li key={baseline}>{baseline}</li>)}</ul>
+              <span>Traduction automatique</span>
+              <h3>Baselines recommandées</h3>
+              <ul>
+                {mtBaselines.map((baseline) => (
+                  <li key={baseline}>{baseline}</li>
+                ))}
+              </ul>
             </article>
 
             <article>
-              <span>Automatic Speech Recognition</span>
-              <h3>Recommended baselines</h3>
-              <ul>{asrBaselines.map((baseline) => <li key={baseline}>{baseline}</li>)}</ul>
+              <span>Reconnaissance automatique de la parole</span>
+              <h3>Baselines recommandées</h3>
+              <ul>
+                {asrBaselines.map((baseline) => (
+                  <li key={baseline}>{baseline}</li>
+                ))}
+              </ul>
             </article>
           </div>
         </div>
@@ -471,13 +695,17 @@ export default function Home() {
 
       {/* <section className="benchmark-data-section" id="evaluation">
         <div className="benchmark-data-header">
-          <p className="section-kicker light">Public evaluation data</p>
-          <h2>Benchmark on datasets the research community can inspect.</h2>
+          <p className="section-kicker light">Données publiques d’évaluation</p>
+
+          <h2>
+            Évaluer sur des datasets que la communauté scientifique peut inspecter.
+          </h2>
+
           <p>
-            Whenever a public benchmark exists for a target language, Griot
-            should report results directly on it. Languages without sufficient
-            public benchmark coverage should receive a separately released,
-            contamination-controlled evaluation set.
+            Lorsqu’un benchmark public existe pour une langue cible, Griot doit
+            publier ses résultats directement dessus. Les langues ne disposant
+            pas d’une couverture publique suffisante doivent recevoir un jeu
+            d’évaluation publié séparément et contrôlé contre la contamination.
           </p>
         </div>
 
@@ -488,7 +716,9 @@ export default function Home() {
               <h3>{dataset.name}</h3>
               <p>{dataset.description}</p>
               <small>{dataset.metrics}</small>
-              <a href={dataset.href} target="_blank" rel="noreferrer">Open public dataset ↗</a>
+              <a href={dataset.href} target="_blank" rel="noreferrer">
+                Ouvrir le dataset public ↗
+              </a>
             </article>
           ))}
         </div>
@@ -496,132 +726,231 @@ export default function Home() {
 
       <section className="content-section method-section">
         <div className="section-number">03</div>
+
         <div className="section-body">
-          <p className="section-kicker">Evaluation protocol</p>
-          <h2>Numbers are useful only when they are reproducible.</h2>
+          <p className="section-kicker">Protocole d’évaluation</p>
+
+          <h2>Les chiffres ne sont utiles que s’ils sont reproductibles.</h2>
 
           <div className="pipeline">
-            <article><span>01</span><h3>Freeze</h3><p>Freeze the exact benchmark version before model evaluation.</p></article>
+            <article>
+              <span>01</span>
+              <h3>Figer</h3>
+              <p>
+                Figer la version exacte du benchmark avant l’évaluation du
+                modèle.
+              </p>
+            </article>
+
             <div>→</div>
-            <article><span>02</span><h3>Normalize</h3><p>Apply documented normalization consistently across all systems.</p></article>
+
+            <article>
+              <span>02</span>
+              <h3>Normaliser</h3>
+              <p>
+                Appliquer la normalisation documentée de manière cohérente à
+                tous les systèmes.
+              </p>
+            </article>
+
             <div>→</div>
-            <article><span>03</span><h3>Evaluate</h3><p>Run every model on the exact same examples and translation directions.</p></article>
+
+            <article>
+              <span>03</span>
+              <h3>Évaluer</h3>
+              <p>
+                Exécuter chaque modèle sur exactement les mêmes exemples et les
+                mêmes directions de traduction.
+              </p>
+            </article>
+
             <div>→</div>
-            <article><span>04</span><h3>Report</h3><p>Publish per-language scores, macro averages and benchmark signatures.</p></article>
+
+            <article>
+              <span>04</span>
+              <h3>Publier les résultats</h3>
+              <p>
+                Publier les scores par langue, les moyennes macro et les
+                signatures du benchmark.
+              </p>
+            </article>
+
             <div>→</div>
-            <article><span>05</span><h3>Release</h3><p>Release scripts and predictions whenever licenses permit.</p></article>
+
+            <article>
+              <span>05</span>
+              <h3>Libérer</h3>
+              <p>
+                Publier les scripts et les prédictions lorsque les licences le
+                permettent.
+              </p>
+            </article>
           </div>
 
           <div className="method-notes">
-            <article><span>MT metrics</span><strong>BLEU · chrF++</strong><p>Compute with SacreBLEU and publish the signature and tokenizer.</p></article>
-            <article><span>ASR metrics</span><strong>WER · CER</strong><p>Report word- and character-level errors with exact normalization rules.</p></article>
-            <article><span>Contamination</span><strong>No train/test overlap</strong><p>Deduplicate training, validation and evaluation material before training.</p></article>
-            <article><span>Reporting</span><strong>Per language</strong><p>Do not hide weak languages behind one multilingual macro score.</p></article>
-            <article><span>Directions</span><strong>Evaluate both directions</strong><p>French → African language and African language → French are reported independently.</p></article>
-            <article><span>Commercial APIs</span><strong>Record evaluation date</strong><p>Document provider, model/API version, prompt, settings and evaluation date.</p></article>
+            <article>
+              <span>Métriques MT</span>
+              <strong>BLEU · chrF++</strong>
+              <p>
+                Calculer avec SacreBLEU et publier la signature ainsi que le
+                tokenizer utilisé.
+              </p>
+            </article>
+
+            <article>
+              <span>Métriques ASR</span>
+              <strong>WER · CER</strong>
+              <p>
+                Publier les erreurs au niveau des mots et des caractères avec
+                les règles exactes de normalisation.
+              </p>
+            </article>
+
+            <article>
+              <span>Contamination</span>
+              <strong>Aucun chevauchement train/test</strong>
+              <p>
+                Dédupliquer les données d’entraînement, de validation et
+                d’évaluation avant l’entraînement.
+              </p>
+            </article>
+
+            <article>
+              <span>Reporting</span>
+              <strong>Par langue</strong>
+              <p>
+                Ne pas masquer les langues faibles derrière un unique score
+                macro multilingue.
+              </p>
+            </article>
+
+            <article>
+              <span>Directions</span>
+              <strong>Évaluer les deux directions</strong>
+              <p>
+                Français → langue africaine et langue africaine → français sont
+                rapportés indépendamment.
+              </p>
+            </article>
+
+            <article>
+              <span>API commerciales</span>
+              <strong>Enregistrer la date d’évaluation</strong>
+              <p>
+                Documenter le fournisseur, le modèle/la version de l’API, le
+                prompt, les paramètres et la date d’évaluation.
+              </p>
+            </article>
           </div>
         </div>
       </section>
 
       <section className="technical-section">
-          <div className="technical-intro">
-            <p className="section-kicker">Open-weight release</p>
+        <div className="technical-intro">
+          <p className="section-kicker">Release open-weight</p>
 
-            <h2>
-              Open weights, documented models, reproducible evaluation.
-            </h2>
+          <h2>
+            Poids ouverts, modèles documentés, évaluation reproductible.
+          </h2>
 
+          <p>
+            Les releases Griot fournissent les artefacts des modèles et la
+            documentation nécessaires pour exécuter l’inférence, inspecter les
+            capacités supportées et reproduire les évaluations publiques. Les
+            pipelines d’entraînement, les jeux de données internes et les
+            recettes d’optimisation propriétaires restent dans la pile de
+            recherche et d’ingénierie de Bivariant.
+          </p>
+        </div>
+
+        <div className="technical-grid">
+          <article>
+            <span>01</span>
+            <h3>Poids des modèles</h3>
             <p>
-              Griot releases provide the model artifacts and documentation required
-              to run inference, inspect supported capabilities and reproduce public
-              evaluations. Training pipelines, internal datasets and proprietary
-              optimization recipes remain part of Bivariant&apos;s research and
-              engineering stack.
+              Checkpoints versionnés et adaptateurs spécifiques aux langues,
+              publiés sur Hugging Face.
             </p>
-          </div>
+          </article>
 
-          <div className="technical-grid">
-            <article>
-              <span>01</span>
-              <h3>Model weights</h3>
-              <p>
-                Versioned model checkpoints and language-specific adapters released
-                through Hugging Face.
-              </p>
-            </article>
+          <article>
+            <span>02</span>
+            <h3>Model cards</h3>
+            <p>
+              Architecture, langues supportées, usages prévus, limites connues
+              et informations de release.
+            </p>
+          </article>
 
-            <article>
-              <span>02</span>
-              <h3>Model cards</h3>
-              <p>
-                Architecture, supported languages, intended uses, known limitations
-                and release information.
-              </p>
-            </article>
+          <article>
+            <span>03</span>
+            <h3>Inférence</h3>
+            <p>
+              Exemples de référence pour exécuter la traduction et la
+              reconnaissance de la parole avec les modèles publiés.
+            </p>
+          </article>
 
-            <article>
-              <span>03</span>
-              <h3>Inference</h3>
-              <p>
-                Reference examples for running translation and speech recognition
-                with the released models.
-              </p>
-            </article>
+          <article>
+            <span>04</span>
+            <h3>Évaluation</h3>
+            <p>
+              Protocoles et métriques d’évaluation publics, notamment BLEU,
+              chrF++, WER et CER selon les tâches.
+            </p>
+          </article>
 
-            <article>
-              <span>04</span>
-              <h3>Evaluation</h3>
-              <p>
-                Public evaluation protocols and metrics including BLEU, chrF++, WER
-                and CER where applicable.
-              </p>
-            </article>
+          <article>
+            <span>05</span>
+            <h3>Benchmarks</h3>
+            <p>
+              Résultats comparables face à des baselines publiques pertinentes
+              et sur des jeux d’évaluation lorsqu’ils sont disponibles.
+            </p>
+          </article>
 
-            <article>
-              <span>05</span>
-              <h3>Benchmarks</h3>
-              <p>
-                Comparable results against relevant public baselines and evaluation
-                datasets when available.
-              </p>
-            </article>
+          <article>
+            <span>06</span>
+            <h3>Provenance</h3>
+            <p>
+              Lignée du modèle, versions des artefacts publiés et informations
+              nécessaires pour identifier chaque release publique.
+            </p>
+          </article>
 
-            <article>
-              <span>06</span>
-              <h3>Provenance</h3>
-              <p>
-                Model lineage, released artifact versions and information required
-                to identify each public release.
-              </p>
-            </article>
+          <article>
+            <span>07</span>
+            <h3>Conditions d’utilisation</h3>
+            <p>
+              Informations claires sur les usages autorisés, les dépendances et
+              les conditions applicables aux artefacts publiés.
+            </p>
+          </article>
 
-            <article>
-              <span>07</span>
-              <h3>Usage terms</h3>
-              <p>
-                Clear information on permitted usage, dependencies and applicable
-                terms for released artifacts.
-              </p>
-            </article>
-
-            <article>
-              <span>08</span>
-              <h3>Limitations</h3>
-              <p>
-                Documented limitations across languages, dialects, accents, domains
-                and code-switching scenarios.
-              </p>
-            </article>
-          </div>
+          <article>
+            <span>08</span>
+            <h3>Limites</h3>
+            <p>
+              Limites documentées selon les langues, dialectes, accents,
+              domaines et scénarios de code-switching.
+            </p>
+          </article>
+        </div>
       </section>
 
       <section className="language-section" id="languages">
         <div className="language-intro">
-          <p className="section-kicker">Language coverage</p>
-          <h2>18 African languages.<br />Every language is a first-class benchmark target.</h2>
+          <p className="section-kicker">Couverture linguistique</p>
+
+          <h2>
+            18 langues africaines.
+            <br />
+            Chaque langue est une cible de benchmark à part entière.
+          </h2>
+
           <p>
-            Griot reports quality independently for each language instead of
-            hiding performance behind a single multilingual average.
+            Griot publie la qualité indépendamment pour chaque langue, au lieu
+            de masquer les performances derrière une moyenne multilingue unique.
           </p>
         </div>
 
@@ -639,15 +968,46 @@ export default function Home() {
 
       {/* <section className="content-section">
         <div className="section-number">04</div>
+
         <div className="section-body">
-          <p className="section-kicker">Release principles</p>
-          <h2>Open models. Transparent evaluation. African language coverage.</h2>
+          <p className="section-kicker">Principes de release</p>
+
+          <h2>
+            Modèles ouverts. Évaluation transparente. Couverture des langues africaines.
+          </h2>
 
           <div className="principles-grid">
-            <article><strong>Open weights</strong><p>Enable researchers, startups and institutions to build directly on the models.</p></article>
-            <article><strong>Reproducible benchmarks</strong><p>Connect every major reported number to a public evaluation procedure.</p></article>
-            <article><strong>Language-level transparency</strong><p>Publish strengths and weaknesses independently for each language.</p></article>
-            <article><strong>Practical deployment</strong><p>Optimize releases for developers building real African language products.</p></article>
+            <article>
+              <strong>Poids ouverts</strong>
+              <p>
+                Permettre aux chercheurs, startups et institutions de construire
+                directement sur les modèles.
+              </p>
+            </article>
+
+            <article>
+              <strong>Benchmarks reproductibles</strong>
+              <p>
+                Relier chaque résultat majeur publié à une procédure
+                d’évaluation publique.
+              </p>
+            </article>
+
+            <article>
+              <strong>Transparence par langue</strong>
+              <p>
+                Publier les forces et faiblesses indépendamment pour chaque
+                langue.
+              </p>
+            </article>
+
+            <article>
+              <strong>Déploiement pratique</strong>
+              <p>
+                Optimiser les releases pour les développeurs construisant de
+                vrais produits linguistiques africains.
+              </p>
+            </article>
           </div>
         </div>
       </section> */}
@@ -655,14 +1015,22 @@ export default function Home() {
       {/* <section className="citation-section" id="citation">
         <div>
           <p className="section-kicker">Citation</p>
-          <h2>Build with Griot.<br />Cite the work.</h2>
+
+          <h2>
+            Construisez avec Griot.
+            <br />
+            Citez le travail.
+          </h2>
+
           <p>
-            A versioned technical report should accompany every major release.
-            Until publication, use the following project citation.
+            Un rapport technique versionné doit accompagner chaque release
+            majeure. Jusqu’à sa publication, utilisez la citation de projet
+            suivante.
           </p>
         </div>
 
-        <pre><code>{`@misc{griot2026,
+        <pre>
+          <code>{`@misc{griot2026,
   title  = {Griot: Open Multilingual Intelligence
             for African Languages},
   author = {Alapini, Luc and Adjovi, Arnauld and
@@ -672,29 +1040,59 @@ export default function Home() {
   url    = {https://bivariant.github.io/Griot/},
   note   = {Bivariant open-source African
             language model initiative}
-}`}</code></pre>
+}`}</code>
+        </pre>
       </section> */}
 
       <section className="bivariant-section">
-        <p>Research and engineering by</p>
+        <p>Recherche et ingénierie par</p>
+
         <h2>Bivariant</h2>
-        <span>Building foundational language technology for Africa&apos;s linguistic diversity.</span>
+
+        <span>
+          Construire les technologies linguistiques fondamentales pour la
+          diversité linguistique de l’Afrique.
+        </span>
+
         <div>
-          <a href="https://www.bivariant.com/" target="_blank" rel="noreferrer">Visit Bivariant ↗</a>
-          <a href="https://github.com/bivariant" target="_blank" rel="noreferrer">GitHub organization ↗</a>
+          <a
+            href="https://www.bivariant.com/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Visiter Bivariant ↗
+          </a>
+
+          <a
+            href="https://github.com/bivariant"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Organisation GitHub ↗
+          </a>
         </div>
       </section>
 
       <footer>
         <img src="./images/griot-logo.png" alt="Griot" />
-        <p>Open multilingual intelligence for African languages.</p>
+
+        <p>Intelligence multilingue ouverte pour les langues africaines.</p>
+
         <div>
-          <a href="#top">Back to top ↑</a>
+          <a href="#top">Retour en haut ↑</a>
           <a href="https://github.com/bivariant/Griot">GitHub</a>
-          <a href="https://github.com/bivariant/Griot/tree/main/models/machine-translation">Griot-MT</a>
-          <a href="https://github.com/bivariant/Griot/tree/main/models/asr">Griot-ASR</a>
+          <a href="https://github.com/bivariant/Griot/tree/main/models/machine-translation">
+            Griot-MT
+          </a>
+          <a href="https://github.com/bivariant/Griot/tree/main/models/asr">
+            Griot-ASR
+          </a>
         </div>
-        <small>© {new Date().getFullYear()} Bivariant · Griot is an open-source African language model initiative.</small>
+
+        <small>
+          © {new Date().getFullYear()} Bivariant · Griot est une initiative
+          open source de modèles pour les langues africaines.
+        </small>
       </footer>
     </main>
   );
