@@ -1,22 +1,22 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/bivariant/Griot/main/public/images/griot-logo.png" alt="Griot by Bivariant" width="420" />
+  <img src="https://raw.githubusercontent.com/bivariant/Griot/main/public/images/griot-logo.png" alt="Griot par Bivariant" width="420" />
 </p>
 
-<h1 align="center">Griot: Open Multilingual Intelligence for African Languages</h1>
+<h1 align="center">Griot : intelligence multilingue ouverte pour les langues africaines</h1>
 
 <p align="center">
-  Open-weight machine translation models for 18 African languages.
-</p>
-
-<p align="center">
-  <strong>18 languages</strong> ·
-  <strong>36 MT directions</strong> ·
-  <strong>420M+ potential speaker coverage</strong> ·
-  <strong>25+ countries represented</strong>
+  Modèles de traduction automatique open-weight pour 18 langues africaines.
 </p>
 
 <p align="center">
-  <a href="https://bivariant.github.io/Griot/">Project page</a> ·
+  <strong>18 langues</strong> ·
+  <strong>36 directions de traduction</strong> ·
+  <strong>420M+ locuteurs potentiels couverts</strong> ·
+  <strong>25+ pays représentés</strong>
+</p>
+
+<p align="center">
+  <a href="https://bivariant.github.io/Griot/">Page du projet</a> ·
   <a href="https://github.com/bivariant/Griot">GitHub</a> ·
   <a href="https://huggingface.co/bivariant/griot-mt">Hugging Face</a> ·
   <a href="https://www.bivariant.com/">Bivariant</a>
@@ -26,589 +26,574 @@
 
 ## Griot
 
-**Griot** is Bivariant's open-weight family of language models for African languages.
+**Griot** est la famille open-weight de modèles de langage de Bivariant dédiée aux langues africaines.
 
-The first public machine translation release is:
+La première release publique de traduction automatique est :
 
-- **Griot-MT** — machine translation between French and 18 African languages, in both directions.
+- **Griot-MT** — traduction automatique entre le français et 18 langues africaines, dans les deux sens.
 
-Griot-MT is released as a shared multilingual model with one dedicated **LoRA adapter per African language**. All 18 language adapters are available in the public Hugging Face repository.
+Griot-MT est distribué sous la forme d’un modèle multilingue partagé avec un **adaptateur LoRA dédié par langue africaine**. Les 18 adaptateurs sont disponibles publiquement sur Hugging Face.
 
-> The public runtime, released model artifacts, required adapter configuration, inference examples and benchmark outputs are documented with the release. Bivariant's training recipe, data-processing pipeline, internal datasets and optimization methodology remain proprietary.
+> Le runtime public, les artefacts du modèle publiés, la configuration des adaptateurs, les exemples d’inférence et les résultats de benchmark sont documentés avec la release. La recette d’entraînement de Bivariant, les jeux de données internes, les mélanges de données privés et certaines optimisations restent propriétaires.
 
-## Highlights
+## Points clés
 
-| Indicator | Griot-MT |
+| Indicateur | Griot-MT |
 |---|---:|
-| African languages | **18** |
-| Translation directions | **36** |
-| Potential speaker coverage | **420M+** |
-| Representative countries | **25+** |
-| Released language adapters | **18 / 18** |
-| Translation-direction coverage | **36 / 36 — 100%** |
-| Global BLEU, coverage-aware | **38.1061** |
-| Global chrF++, coverage-aware | **58.0000** |
-| African → French BLEU | **48.0136** |
-| French → African BLEU | **28.1986** |
+| Langues africaines | **18** |
+| Directions de traduction | **36** |
+| Couverture potentielle en locuteurs | **420M+** |
+| Pays représentatifs | **25+** |
+| Adaptateurs publiés | **18 / 18** |
+| Couverture des directions | **36 / 36 — 100%** |
+| BLEU global, coverage-aware | **38.1061** |
+| chrF++ global, coverage-aware | **58.0000** |
+| BLEU langues africaines → français | **48.0136** |
+| BLEU français → langues africaines | **28.1986** |
 
 ---
 
-## Coverage
+## Couverture linguistique
 
-Griot targets linguistic communities representing **more than 420 million speakers** across **more than 25 African countries**.
+Griot cible des communautés linguistiques représentant **plus de 420 millions de locuteurs potentiels** dans **plus de 25 pays africains**.
 
-| # | Code | Language | Model token | Representative regions |
+| # | Code | Langue | Token modèle | Régions représentatives |
 |---:|:---:|---|:---:|---|
-| 01 | `bba` | Baatonou | `bba_Latn` | Benin, Nigeria |
+| 01 | `bba` | Baatonou | `bba_Latn` | Bénin, Nigeria |
 | 02 | `bci` | Baoulé | `bci_Latn` | Côte d’Ivoire |
 | 03 | `dyu` | Dioula | `dyu_Latn` | Côte d’Ivoire, Burkina Faso, Mali |
 | 04 | `ewe` | Ewé | `ewe_Latn` | Togo, Ghana |
-| 05 | `ewo` | Ewondo | `ewo_Latn` | Cameroon |
-| 06 | `fon` | Fon | `fon_Latn` | Benin, Togo |
-| 07 | `fub` | Fulfulde | `fub_Latn` | Cameroon, Nigeria, Niger, Guinea, Mali, Senegal |
-| 08 | `hau` | Hausa | `hau_Latn` | Nigeria, Niger, Ghana, Cameroon, Chad |
-| 09 | `lin` | Lingala | `lin_Latn` | DR Congo, Republic of the Congo, Angola, Central African Republic |
-| 10 | `lug` | Luganda | `lug_Latn` | Uganda |
+| 05 | `ewo` | Ewondo | `ewo_Latn` | Cameroun |
+| 06 | `fon` | Fon | `fon_Latn` | Bénin, Togo |
+| 07 | `fub` | Fulfulde | `fub_Latn` | Cameroun, Nigeria, Niger, Guinée, Mali, Sénégal |
+| 08 | `hau` | Hausa | `hau_Latn` | Nigeria, Niger, Ghana, Cameroun, Tchad |
+| 09 | `lin` | Lingala | `lin_Latn` | RDC, Congo, Angola, République centrafricaine |
+| 10 | `lug` | Luganda | `lug_Latn` | Ouganda |
 | 11 | `mos` | Mooré | `mos_Latn` | Burkina Faso |
-| 12 | `mwm` | Sar | `mwm_Latn` | Chad |
-| 13 | `orm` | Oromo | `gaz_Latn` | Ethiopia, Kenya |
-| 14 | `sag` | Sango | `sag_Latn` | Central African Republic |
+| 12 | `mwm` | Sar | `mwm_Latn` | Tchad |
+| 13 | `orm` | Oromo | `gaz_Latn` | Éthiopie, Kenya |
+| 14 | `sag` | Sango | `sag_Latn` | République centrafricaine |
 | 15 | `sna` | Shona | `sna_Latn` | Zimbabwe, Mozambique |
-| 16 | `som` | Somali | `som_Latn` | Somalia, Ethiopia, Kenya, Djibouti |
-| 17 | `swh` | Swahili | `swh_Latn` | Tanzania, Kenya, DR Congo, Uganda, Rwanda, Burundi |
-| 18 | `wol` | Wolof | `wol_Latn` | Senegal, The Gambia |
+| 16 | `som` | Somali | `som_Latn` | Somalie, Éthiopie, Kenya, Djibouti |
+| 17 | `swh` | Swahili | `swh_Latn` | Tanzanie, Kenya, RDC, Ouganda, Rwanda, Burundi |
+| 18 | `wol` | Wolof | `wol_Latn` | Sénégal, Gambie |
 
-French uses the token `fra_Latn`.
+Le français utilise le token `fra_Latn`.
 
-Country references indicate representative speech communities, not an exhaustive linguistic map.
+> Pour l’Oromo, le token publié est `gaz_Latn`.
+
+Les pays indiqués correspondent à des communautés linguistiques représentatives et ne constituent pas une cartographie exhaustive.
 
 ---
 
-## Model family
+## Famille de modèles
 
-| Model | Task | Coverage | Packaging | Primary metrics |
+| Modèle | Tâche | Couverture | Packaging | Métriques principales |
 |---|---|---|---|---|
-| **Griot-MT** | Machine Translation | 18 languages / 36 FR ↔ African-language directions | Shared multilingual model + LoRA adapter per language | BLEU, chrF++ |
+| **Griot-MT** | Traduction automatique | 18 langues / 36 directions FR ↔ langues africaines | Modèle multilingue partagé + adaptateur LoRA par langue | BLEU, chrF++ |
 
 ### Griot-MT
 
-Release documentation:
+Documentation de la release :
 
-**[`models/machine-translation/`](**https://github.com/bivariant/Griot/tree/main/models/machine-translation/**)**
+**[`models/machine-translation/`](https://github.com/bivariant/Griot/tree/main/models/machine-translation/)**
 
-Model repository:
+Dépôt du modèle :
 
-**[Hugging Face: `bivariant/griot-mt`](**https://huggingface.co/bivariant/griot-mt**)**
+**[Hugging Face : `bivariant/griot-mt`](https://huggingface.co/bivariant/griot-mt)**
+
+Collecte et alignement des données :
+
+**[`bivariant/GriotMT-OpenSource`](https://github.com/bivariant/GriotMT-OpenSource)**
 
 ---
 
 # Benchmark
 
-## Evaluation setup
+## Protocole d’évaluation
 
-Griot-MT was evaluated against two widely used translation baselines:
+Griot-MT est comparé à deux baselines de traduction largement utilisées :
 
 - **NLLB-200 1.3B**
 - **Google Cloud Translation**
 
-The same held-out test pairs are used for every system for each language and direction.
+Les mêmes paires de test tenues à l’écart sont utilisées pour chaque système, chaque langue et chaque direction.
 
-The benchmark covers:
+Le benchmark couvre :
 
-- **18 African languages**
-- **2 directions per language**
-- **36 translation directions**
-- **108 evaluated model-language-direction units** across the three final systems
+- **18 langues africaines**
+- **2 directions par langue**
+- **36 directions de traduction**
+- **108 unités modèle-langue-direction** sur les trois systèmes finaux
 
-Metrics:
+Métriques :
 
 - **BLEU** — SacreBLEU, tokenizer `13a`
-- **chrF++** — SacreBLEU with `word_order=2`
+- **chrF++** — SacreBLEU avec `word_order=2`
 
-### Coverage-aware scoring
+### Scoring coverage-aware
 
-For the global coverage-aware benchmark, an unsupported language/direction receives:
+Dans le benchmark global coverage-aware, une langue/direction non supportée reçoit :
 
 - **BLEU = 0**
 - **chrF++ = 0**
 
-This makes the global score measure both **translation quality and practical language coverage**.
+Le score global mesure donc à la fois **la qualité de traduction et la couverture linguistique pratique**.
 
-### Matched-support scoring
+### Scoring matched-support
 
-A second evaluation compares Griot-MT and each baseline **only on the exact directions supported by that baseline**. This isolates translation quality from coverage.
+Une seconde évaluation compare Griot-MT à chaque baseline **uniquement sur les directions exactes supportées par cette baseline**. Cette lecture isole la qualité de traduction de la couverture.
 
-For **Google Cloud Translation**, language support was validated by direct live translation-pair calls to the **Cloud Translation v2 API**. The final evaluated endpoint supports **28 / 36 directions (14 / 18 languages)** in this benchmark. Baatonou, Ewondo, Mooré and Sar are unsupported by that endpoint and therefore receive zero in the coverage-aware view.
+Pour **Google Cloud Translation**, la couverture a été validée par des appels directs de traduction sur l’API **Cloud Translation v2** dans les deux directions. Dans cette évaluation, Google Cloud Translation supporte **28 / 36 directions (14 / 18 langues)**. Baatonou, Ewondo, Mooré et Sar ne sont pas supportés par l’endpoint évalué et reçoivent donc zéro dans la vue coverage-aware.
 
-> These results are measured on Bivariant's held-out evaluation split. They should be interpreted as results for this benchmark protocol, not as universal claims across every domain, dialect or external dataset.
+> Ces résultats sont mesurés sur le split d’évaluation tenu à l’écart de Bivariant. Ils doivent être interprétés dans le cadre de ce protocole précis et non comme une garantie universelle sur tous les domaines, dialectes ou jeux de données externes.
 
 ---
 
-## Global benchmark — all 36 directions
+## Benchmark global — 36 directions
 
-| Model | BLEU | chrF++ | Supported directions | Coverage |
+| Modèle | BLEU | chrF++ | Directions supportées | Couverture |
 |---|---:|---:|---:|---:|
 | **Griot-MT** | **38.1061** | **58.0000** | **36 / 36** | **100.00%** |
 | NLLB-200 1.3B | 16.1319 | 33.5317 | 26 / 36 | 72.22% |
 | Google Cloud Translation | 15.0325 | 33.9702 | 28 / 36 | 77.78% |
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/01_global/global_bleu_macro36.png" alt="Global BLEU benchmark across 36 directions" width="860" />
+  <img src="./griot_mt_benchmark_visualizations/01_global/global_bleu_macro36.png" alt="Benchmark BLEU global sur 36 directions" width="860" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/01_global/global_chrfpp_macro36.png" alt="Global chrF++ benchmark across 36 directions" width="860" />
+  <img src="./griot_mt_benchmark_visualizations/01_global/global_chrfpp_macro36.png" alt="Benchmark chrF++ global sur 36 directions" width="860" />
 </p>
 
-### Translation-direction coverage
+### Couverture des directions
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/01_global/coverage.png" alt="Translation direction coverage" width="860" />
+  <img src="./griot_mt_benchmark_visualizations/01_global/coverage.png" alt="Couverture des directions de traduction" width="860" />
 </p>
 
-Griot-MT covers **all 36 translation directions** in the release. NLLB-200 1.3B covers 26 of the 36 evaluated directions, while Google Cloud Translation covers 28.
+Griot-MT couvre **les 36 directions de traduction**. NLLB-200 1.3B couvre 26 directions sur 36, tandis que Google Cloud Translation en couvre 28.
 
 ---
 
-## Benchmark by direction
+## Benchmark par direction
 
-| Model | Direction | BLEU | chrF++ | Supported languages |
+| Modèle | Direction | BLEU | chrF++ | Langues supportées |
 |---|---|---:|---:|---:|
-| **Griot-MT** | African → French | **48.0136** | **64.1988** | **18 / 18** |
-| **Griot-MT** | French → African | **28.1986** | **51.8012** | **18 / 18** |
-| NLLB-200 1.3B | African → French | 17.3772 | 33.9561 | 13 / 18 |
-| NLLB-200 1.3B | French → African | 14.8865 | 33.1073 | 13 / 18 |
-| Google Cloud Translation | African → French | 18.2769 | 36.0616 | 14 / 18 |
-| Google Cloud Translation | French → African | 11.7881 | 31.8788 | 14 / 18 |
+| **Griot-MT** | Langue africaine → Français | **48.0136** | **64.1988** | **18 / 18** |
+| **Griot-MT** | Français → Langue africaine | **28.1986** | **51.8012** | **18 / 18** |
+| NLLB-200 1.3B | Langue africaine → Français | 17.3772 | 33.9561 | 13 / 18 |
+| NLLB-200 1.3B | Français → Langue africaine | 14.8865 | 33.1073 | 13 / 18 |
+| Google Cloud Translation | Langue africaine → Français | 18.2769 | 36.0616 | 14 / 18 |
+| Google Cloud Translation | Français → Langue africaine | 11.7881 | 31.8788 | 14 / 18 |
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/02_directions/bleu_by_direction.png" alt="BLEU by translation direction" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/02_directions/bleu_by_direction.png" alt="BLEU par direction de traduction" width="900" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/02_directions/chrfpp_by_direction.png" alt="chrF++ by translation direction" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/02_directions/chrfpp_by_direction.png" alt="chrF++ par direction de traduction" width="900" />
 </p>
 
 ---
 
-## Quality on supported directions only
+## Qualité sur les directions supportées uniquement
 
-This view removes the zero-score penalty for unsupported directions and averages each system only over the directions it actually supports.
+Cette vue retire la pénalité de score nul pour les directions non supportées et calcule la moyenne de chaque système uniquement sur les directions qu’il supporte réellement.
 
-| Model | BLEU on supported directions | chrF++ on supported directions | Directions |
+| Modèle | BLEU sur directions supportées | chrF++ sur directions supportées | Directions |
 |---|---:|---:|---:|
 | **Griot-MT** | **38.1061** | **58.0000** | 36 |
 | NLLB-200 1.3B | 22.3364 | 46.4285 | 26 |
 | Google Cloud Translation | 19.3275 | 43.6760 | 28 |
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/03_supported_only/supported_only_bleu.png" alt="BLEU on supported directions only" width="860" />
+  <img src="./griot_mt_benchmark_visualizations/03_supported_only/supported_only_bleu.png" alt="BLEU sur les directions supportées uniquement" width="860" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/03_supported_only/supported_only_chrfpp.png" alt="chrF++ on supported directions only" width="860" />
+  <img src="./griot_mt_benchmark_visualizations/03_supported_only/supported_only_chrfpp.png" alt="chrF++ sur les directions supportées uniquement" width="860" />
 </p>
 
 ---
 
-## Matched-support comparison — Griot-MT vs NLLB-200 1.3B
+## Comparaison matched-support — Griot-MT vs NLLB-200 1.3B
 
-The comparison below uses **exactly the same 26 directions supported by NLLB-200 1.3B**.
+La comparaison ci-dessous utilise **exactement les 26 directions supportées par NLLB-200 1.3B**.
 
-| Model | BLEU | chrF++ | Directions |
+| Modèle | BLEU | chrF++ | Directions |
 |---|---:|---:|---:|
 | **Griot-MT** | **40.6303** | **60.4069** | 26 |
 | NLLB-200 1.3B | 22.3364 | 46.4285 | 26 |
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/04_matched_support/griot_vs_nllb_bleu.png" alt="Griot-MT vs NLLB matched-support BLEU" width="820" />
+  <img src="./griot_mt_benchmark_visualizations/04_matched_support/griot_vs_nllb_bleu.png" alt="BLEU matched-support Griot-MT vs NLLB" width="820" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/04_matched_support/griot_vs_nllb_chrfpp.png" alt="Griot-MT vs NLLB matched-support chrF++" width="820" />
+  <img src="./griot_mt_benchmark_visualizations/04_matched_support/griot_vs_nllb_chrfpp.png" alt="chrF++ matched-support Griot-MT vs NLLB" width="820" />
 </p>
 
 ---
 
-## Matched-support comparison — Griot-MT vs Google Cloud Translation
+## Comparaison matched-support — Griot-MT vs Google Cloud Translation
 
-The comparison below uses **exactly the same 28 directions supported by Google Cloud Translation**.
+La comparaison ci-dessous utilise **exactement les 28 directions supportées par Google Cloud Translation**.
 
-| Model | BLEU | chrF++ | Directions |
+| Modèle | BLEU | chrF++ | Directions |
 |---|---:|---:|---:|
 | **Griot-MT** | **39.5908** | **59.5832** | 28 |
 | Google Cloud Translation | 19.3275 | 43.6760 | 28 |
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/04_matched_support/griot_vs_google_bleu.png" alt="Griot-MT vs Google Cloud Translation matched-support BLEU" width="820" />
+  <img src="./griot_mt_benchmark_visualizations/04_matched_support/griot_vs_google_bleu.png" alt="BLEU matched-support Griot-MT vs Google Cloud Translation" width="820" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/04_matched_support/griot_vs_google_chrfpp.png" alt="Griot-MT vs Google Cloud Translation matched-support chrF++" width="820" />
+  <img src="./griot_mt_benchmark_visualizations/04_matched_support/griot_vs_google_chrfpp.png" alt="chrF++ matched-support Griot-MT vs Google Cloud Translation" width="820" />
 </p>
 
-The matched-support results show that the global Griot-MT advantage is **not explained only by broader language coverage**: Griot-MT also achieves higher aggregate BLEU and chrF++ when evaluated on the exact same supported directions as each baseline.
+Les résultats matched-support montrent que l’avantage global de Griot-MT **ne s’explique pas uniquement par une couverture linguistique plus large** : Griot-MT obtient également des scores BLEU et chrF++ agrégés plus élevés lorsqu’il est évalué sur exactement les mêmes directions que chaque baseline.
 
 ---
 
-## All-language comparison
+## Comparaison sur l’ensemble des langues
 
 ### BLEU
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/07_language_comparison/all_languages_bleu.png" alt="BLEU comparison across all Griot-MT languages" width="1000" />
+  <img src="./griot_mt_benchmark_visualizations/07_language_comparison/all_languages_bleu.png" alt="Comparaison BLEU sur toutes les langues Griot-MT" width="1000" />
 </p>
 
 ### chrF++
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/07_language_comparison/all_languages_chrfpp.png" alt="chrF++ comparison across all Griot-MT languages" width="1000" />
+  <img src="./griot_mt_benchmark_visualizations/07_language_comparison/all_languages_chrfpp.png" alt="Comparaison chrF++ sur toutes les langues Griot-MT" width="1000" />
 </p>
 
 ---
 
-## Per-language benchmark
+## Benchmark par langue
 
-Each language below includes the two benchmark views:
+Chaque langue ci-dessous présente les deux vues :
 
 - **BLEU**
 - **chrF++**
 
-The plots dynamically reflect the persisted benchmark results used for the release.
+Les graphiques reflètent les résultats persistés utilisés pour la release finale.
 
 <details>
-
 <summary><strong>01 · Baatonou (`bba`)</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_languages/bba/bba_bleu.png" alt="Baatonou BLEU benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/bba/bba_bleu.png" alt="Benchmark BLEU Baatonou" width="900" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_languages/bba/bba_chrfpp.png" alt="Baatonou chrF++ benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/bba/bba_chrfpp.png" alt="Benchmark chrF++ Baatonou" width="900" />
 </p>
 
 </details>
 
 <details>
-
 <summary><strong>02 · Baoulé (`bci`)</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_languages/bci/bci_bleu.png" alt="Baoulé BLEU benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/bci/bci_bleu.png" alt="Benchmark BLEU Baoulé" width="900" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_languages/bci/bci_chrfpp.png" alt="Baoulé chrF++ benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/bci/bci_chrfpp.png" alt="Benchmark chrF++ Baoulé" width="900" />
 </p>
 
 </details>
 
 <details>
-
 <summary><strong>03 · Dioula (`dyu`)</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_languages/dyu/dyu_bleu.png" alt="Dioula BLEU benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/dyu/dyu_bleu.png" alt="Benchmark BLEU Dioula" width="900" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_languages/dyu/dyu_chrfpp.png" alt="Dioula chrF++ benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/dyu/dyu_chrfpp.png" alt="Benchmark chrF++ Dioula" width="900" />
 </p>
 
 </details>
 
 <details>
-
 <summary><strong>04 · Ewé (`ewe`)</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_languages/ewe/ewe_bleu.png" alt="Ewé BLEU benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/ewe/ewe_bleu.png" alt="Benchmark BLEU Ewé" width="900" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_languages/ewe/ewe_chrfpp.png" alt="Ewé chrF++ benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/ewe/ewe_chrfpp.png" alt="Benchmark chrF++ Ewé" width="900" />
 </p>
 
 </details>
 
 <details>
-
 <summary><strong>05 · Ewondo (`ewo`)</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_languages/ewo/ewo_bleu.png" alt="Ewondo BLEU benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/ewo/ewo_bleu.png" alt="Benchmark BLEU Ewondo" width="900" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_languages/ewo/ewo_chrfpp.png" alt="Ewondo chrF++ benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/ewo/ewo_chrfpp.png" alt="Benchmark chrF++ Ewondo" width="900" />
 </p>
 
 </details>
 
 <details>
-
 <summary><strong>06 · Fon (`fon`)</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_languages/fon/fon_bleu.png" alt="Fon BLEU benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/fon/fon_bleu.png" alt="Benchmark BLEU Fon" width="900" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_languages/fon/fon_chrfpp.png" alt="Fon chrF++ benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/fon/fon_chrfpp.png" alt="Benchmark chrF++ Fon" width="900" />
 </p>
 
 </details>
 
 <details>
-
 <summary><strong>07 · Fulfulde (`fub`)</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_languages/fub/fub_bleu.png" alt="Fulfulde BLEU benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/fub/fub_bleu.png" alt="Benchmark BLEU Fulfulde" width="900" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_languages/fub/fub_chrfpp.png" alt="Fulfulde chrF++ benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/fub/fub_chrfpp.png" alt="Benchmark chrF++ Fulfulde" width="900" />
 </p>
 
 </details>
 
 <details>
-
 <summary><strong>08 · Hausa (`hau`)</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_languages/hau/hau_bleu.png" alt="Hausa BLEU benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/hau/hau_bleu.png" alt="Benchmark BLEU Hausa" width="900" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_languages/hau/hau_chrfpp.png" alt="Hausa chrF++ benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/hau/hau_chrfpp.png" alt="Benchmark chrF++ Hausa" width="900" />
 </p>
 
 </details>
 
 <details>
-
 <summary><strong>09 · Lingala (`lin`)</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_languages/lin/lin_bleu.png" alt="Lingala BLEU benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/lin/lin_bleu.png" alt="Benchmark BLEU Lingala" width="900" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_languages/lin/lin_chrfpp.png" alt="Lingala chrF++ benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/lin/lin_chrfpp.png" alt="Benchmark chrF++ Lingala" width="900" />
 </p>
 
 </details>
 
 <details>
-
 <summary><strong>10 · Luganda (`lug`)</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_languages/lug/lug_bleu.png" alt="Luganda BLEU benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/lug/lug_bleu.png" alt="Benchmark BLEU Luganda" width="900" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_languages/lug/lug_chrfpp.png" alt="Luganda chrF++ benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/lug/lug_chrfpp.png" alt="Benchmark chrF++ Luganda" width="900" />
 </p>
 
 </details>
 
 <details>
-
 <summary><strong>11 · Mooré (`mos`)</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_languages/mos/mos_bleu.png" alt="Mooré BLEU benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/mos/mos_bleu.png" alt="Benchmark BLEU Mooré" width="900" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_languages/mos/mos_chrfpp.png" alt="Mooré chrF++ benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/mos/mos_chrfpp.png" alt="Benchmark chrF++ Mooré" width="900" />
 </p>
 
 </details>
 
 <details>
-
 <summary><strong>12 · Sar (`mwm`)</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_languages/mwm/mwm_bleu.png" alt="Sar BLEU benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/mwm/mwm_bleu.png" alt="Benchmark BLEU Sar" width="900" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_languages/mwm/mwm_chrfpp.png" alt="Sar chrF++ benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/mwm/mwm_chrfpp.png" alt="Benchmark chrF++ Sar" width="900" />
 </p>
 
 </details>
 
 <details>
-
 <summary><strong>13 · Oromo (`orm`)</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_languages/orm/orm_bleu.png" alt="Oromo BLEU benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/orm/orm_bleu.png" alt="Benchmark BLEU Oromo" width="900" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_languages/orm/orm_chrfpp.png" alt="Oromo chrF++ benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/orm/orm_chrfpp.png" alt="Benchmark chrF++ Oromo" width="900" />
 </p>
 
 </details>
 
 <details>
-
 <summary><strong>14 · Sango (`sag`)</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_languages/sag/sag_bleu.png" alt="Sango BLEU benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/sag/sag_bleu.png" alt="Benchmark BLEU Sango" width="900" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_languages/sag/sag_chrfpp.png" alt="Sango chrF++ benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/sag/sag_chrfpp.png" alt="Benchmark chrF++ Sango" width="900" />
 </p>
 
 </details>
 
 <details>
-
 <summary><strong>15 · Shona (`sna`)</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_languages/sna/sna_bleu.png" alt="Shona BLEU benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/sna/sna_bleu.png" alt="Benchmark BLEU Shona" width="900" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_languages/sna/sna_chrfpp.png" alt="Shona chrF++ benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/sna/sna_chrfpp.png" alt="Benchmark chrF++ Shona" width="900" />
 </p>
 
 </details>
 
 <details>
-
 <summary><strong>16 · Somali (`som`)</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_languages/som/som_bleu.png" alt="Somali BLEU benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/som/som_bleu.png" alt="Benchmark BLEU Somali" width="900" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_languages/som/som_chrfpp.png" alt="Somali chrF++ benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/som/som_chrfpp.png" alt="Benchmark chrF++ Somali" width="900" />
 </p>
 
 </details>
 
 <details>
-
 <summary><strong>17 · Swahili (`swh`)</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_languages/swh/swh_bleu.png" alt="Swahili BLEU benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/swh/swh_bleu.png" alt="Benchmark BLEU Swahili" width="900" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_languages/swh/swh_chrfpp.png" alt="Swahili chrF++ benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/swh/swh_chrfpp.png" alt="Benchmark chrF++ Swahili" width="900" />
 </p>
 
 </details>
 
 <details>
-
 <summary><strong>18 · Wolof (`wol`)</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_languages/wol/wol_bleu.png" alt="Wolof BLEU benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/wol/wol_bleu.png" alt="Benchmark BLEU Wolof" width="900" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/05_languages/wol/wol_chrfpp.png" alt="Wolof chrF++ benchmark" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/05_languages/wol/wol_chrfpp.png" alt="Benchmark chrF++ Wolof" width="900" />
 </p>
 
 </details>
 
 ---
 
-## Benchmark heatmaps
+## Heatmaps du benchmark
 
 <details>
-
-<summary><strong>Griot-MT heatmaps</strong></summary>
+<summary><strong>Heatmaps Griot-MT</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/06_heatmaps/griot-mt_bleu.png" alt="Griot-MT BLEU heatmap" width="820" />
+  <img src="./griot_mt_benchmark_visualizations/06_heatmaps/griot-mt_bleu.png" alt="Heatmap BLEU Griot-MT" width="820" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/06_heatmaps/griot-mt_chrfpp.png" alt="Griot-MT chrF++ heatmap" width="820" />
+  <img src="./griot_mt_benchmark_visualizations/06_heatmaps/griot-mt_chrfpp.png" alt="Heatmap chrF++ Griot-MT" width="820" />
 </p>
 
 </details>
 
 <details>
-
-<summary><strong>NLLB-200 1.3B heatmaps</strong></summary>
+<summary><strong>Heatmaps NLLB-200 1.3B</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/06_heatmaps/nllb-200-1.3b_bleu.png" alt="NLLB-200 BLEU heatmap" width="820" />
+  <img src="./griot_mt_benchmark_visualizations/06_heatmaps/nllb-200-1.3b_bleu.png" alt="Heatmap BLEU NLLB-200 1.3B" width="820" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/06_heatmaps/nllb-200-1.3b_chrfpp.png" alt="NLLB-200 chrF++ heatmap" width="820" />
+  <img src="./griot_mt_benchmark_visualizations/06_heatmaps/nllb-200-1.3b_chrfpp.png" alt="Heatmap chrF++ NLLB-200 1.3B" width="820" />
 </p>
 
 </details>
 
 <details>
-
-<summary><strong>Google Cloud Translation heatmaps</strong></summary>
+<summary><strong>Heatmaps Google Cloud Translation</strong></summary>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/06_heatmaps/google-translate-v2-real_bleu.png" alt="Google Cloud Translation BLEU heatmap" width="820" />
+  <img src="./griot_mt_benchmark_visualizations/06_heatmaps/google-translate-v2-real_bleu.png" alt="Heatmap BLEU Google Cloud Translation" width="820" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/06_heatmaps/google-translate-v2-real_chrfpp.png" alt="Google Cloud Translation chrF++ heatmap" width="820" />
+  <img src="./griot_mt_benchmark_visualizations/06_heatmaps/google-translate-v2-real_chrfpp.png" alt="Heatmap chrF++ Google Cloud Translation" width="820" />
 </p>
 
 </details>
 
 ---
 
-## Griot-MT advantage on shared supported directions
+## Avantage de Griot-MT sur les directions supportées en commun
 
-These plots show the mean score difference:
+Ces graphiques montrent la différence moyenne :
 
 **Δ = Griot-MT − baseline**
 
-Positive values indicate an advantage for Griot-MT.
+Une valeur positive indique un avantage pour Griot-MT.
 
-### Against NLLB-200 1.3B
+### Face à NLLB-200 1.3B
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/08_delta/griot_vs_nllb-200-1.3b_bleu_delta.png" alt="Griot-MT BLEU advantage over NLLB" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/08_delta/griot_vs_nllb-200-1.3b_bleu_delta.png" alt="Avantage BLEU de Griot-MT sur NLLB" width="900" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/08_delta/griot_vs_nllb-200-1.3b_chrfpp_delta.png" alt="Griot-MT chrF++ advantage over NLLB" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/08_delta/griot_vs_nllb-200-1.3b_chrfpp_delta.png" alt="Avantage chrF++ de Griot-MT sur NLLB" width="900" />
 </p>
 
-### Against Google Cloud Translation
+### Face à Google Cloud Translation
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/08_delta/griot_vs_google-translate-v2-real_bleu_delta.png" alt="Griot-MT BLEU advantage over Google Cloud Translation" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/08_delta/griot_vs_google-translate-v2-real_bleu_delta.png" alt="Avantage BLEU de Griot-MT sur Google Cloud Translation" width="900" />
 </p>
 
 <p align="center">
-  <img src="./griot_mt_benchmark_visualizations/08_delta/griot_vs_google-translate-v2-real_chrfpp_delta.png" alt="Griot-MT chrF++ advantage over Google Cloud Translation" width="900" />
+  <img src="./griot_mt_benchmark_visualizations/08_delta/griot_vs_google-translate-v2-real_chrfpp_delta.png" alt="Avantage chrF++ de Griot-MT sur Google Cloud Translation" width="900" />
 </p>
 
 ---
 
-## Benchmark artifacts
+## Artefacts du benchmark
 
-The figure bundle also contains the CSV data used to generate the visualizations:
+Le bundle de visualisations contient également les CSV utilisés pour générer les figures :
 
 - [`metrics_used_for_figures.csv`](./griot_mt_benchmark_visualizations/data/metrics_used_for_figures.csv)
 - [`global_leaderboard.csv`](./griot_mt_benchmark_visualizations/data/global_leaderboard.csv)
@@ -618,10 +603,11 @@ The figure bundle also contains the CSV data used to generate the visualizations
 - [`griot_vs_nllb_matched_support.csv`](./griot_mt_benchmark_visualizations/data/griot_vs_nllb_matched_support.csv)
 - [`griot_vs_google_matched_support.csv`](./griot_mt_benchmark_visualizations/data/griot_vs_google_matched_support.csv)
 
-Expected local repository layout:
+Arborescence locale attendue :
 
 ```text
 README.md
+
 griot_mt_benchmark_visualizations/
 ├── 01_global/
 ├── 02_directions/
@@ -634,20 +620,19 @@ griot_mt_benchmark_visualizations/
 └── data/
 ```
 
-If your extracted folder has another name, either rename it to `griot_mt_benchmark_visualizations` or update the relative image paths in this README.
-
 ---
 
-# Inference
+# Inférence
 
-Griot-MT is released as a shared model with one language-specific LoRA adapter per African language.
+Griot-MT est distribué comme un modèle partagé accompagné d’un adaptateur LoRA spécifique à chaque langue africaine.
 
-The example below runs **French → Baatonou (`bba`)** using only artifacts published in `bivariant/griot-mt`.
+L’exemple ci-dessous exécute **Français → Baatonou (`bba`)** en utilisant uniquement les artefacts publiés dans `bivariant/griot-mt`.
 
-## Install
+## Installation
 
 ```bash
 pip uninstall -y torchao
+
 pip install -q \
   "transformers==5.16.1" \
   "peft==0.20.0" \
@@ -657,16 +642,23 @@ pip install -q \
   "huggingface_hub>=0.34.0"
 ```
 
-## French → Baatonou
+## Français → Baatonou
 
 ```python
 from pathlib import Path
+
 import torch
+
 from huggingface_hub import snapshot_download
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 from peft import PeftModel
+
+
 REPO = "bivariant/griot-mt"
+
 TEXT = "Bonjour, comment allez-vous aujourd'hui ?"
+
+
 path = snapshot_download(
     REPO,
     allow_patterns=[
@@ -679,6 +671,8 @@ path = snapshot_download(
         "adapters/bba/adapter_model.safetensors",
     ],
 )
+
+
 device = (
     "cuda"
     if torch.cuda.is_available()
@@ -686,35 +680,60 @@ device = (
     if torch.backends.mps.is_available()
     else "cpu"
 )
-dtype = torch.float16 if device != "cpu" else torch.float32
+
+dtype = (
+    torch.float16
+    if device != "cpu"
+    else torch.float32
+)
+
+
 tokenizer = AutoTokenizer.from_pretrained(
     path,
     local_files_only=True,
 )
+
 tokenizer.src_lang = "fra_Latn"
+
+
 base = AutoModelForSeq2SeqLM.from_pretrained(
     path,
     local_files_only=True,
     dtype=dtype,
     low_cpu_mem_usage=True,
 )
+
+
 model = PeftModel.from_pretrained(
     base,
     Path(path) / "adapters" / "bba",
     is_trainable=False,
 ).to(device).eval()
+
+
 inputs = tokenizer(
     TEXT,
     return_tensors="pt",
 ).to(device)
+
+
 with torch.inference_mode():
     output = model.generate(
         **inputs,
-        forced_bos_token_id=tokenizer.convert_tokens_to_ids(
-            "bba_Latn"
+        forced_bos_token_id=(
+            tokenizer.convert_tokens_to_ids(
+                "bba_Latn"
+            )
         ),
+        num_beams=4,
+        max_length=257,
+        repetition_penalty=1.3,
+        no_repeat_ngram_size=3,
     )
+
+
 print("FR :", TEXT)
+
 print(
     "BBA:",
     tokenizer.decode(
@@ -724,51 +743,51 @@ print(
 )
 ```
 
-To use another Griot-MT language, replace:
+Pour utiliser une autre langue Griot-MT, remplacez :
 
-- `adapters/bba/` with the corresponding adapter;
-- `fra_Latn` with the source language token when translating toward French;
-- `bba_Latn` with the desired target language token.
+- `adapters/bba/` par l’adaptateur correspondant ;
+- `fra_Latn` par le token de la langue source lorsque vous traduisez vers le français ;
+- `bba_Latn` par le token de la langue cible.
 
-For Oromo, the released model token is `gaz_Latn`.
+Pour l’Oromo, le token publié est `gaz_Latn`.
 
 ### Colab
 
-[Open the Griot-MT inference notebook in Google Colab](https://colab.research.google.com/drive/1pYcj0G53zT_cURW6mFkD-62pwJJZcVWR?usp=sharing)
+[Ouvrir le notebook d’inférence Griot-MT dans Google Colab](https://colab.research.google.com/drive/1pYcj0G53zT_cURW6mFkD-62pwJJZcVWR?usp=sharing)
 
 ---
 
-## Intended use
+## Usages prévus
 
-Griot-MT is intended for:
+Griot-MT est destiné notamment à :
 
-- research on African-language machine translation;
-- multilingual NLP experimentation;
-- prototyping language-access applications;
-- evaluation of French ↔ African-language translation;
-- community-driven development for underrepresented languages.
+- la recherche sur la traduction automatique des langues africaines ;
+- l’expérimentation en NLP multilingue ;
+- le prototypage d’applications d’accès linguistique ;
+- l’évaluation de la traduction français ↔ langues africaines ;
+- le développement communautaire autour des langues sous-représentées.
 
-Users should evaluate outputs for their target dialect, domain and deployment context before relying on translations in high-stakes settings.
-
----
-
-## Limitations
-
-Griot-MT performance may vary across:
-
-- dialects and regional varieties;
-- specialized technical domains;
-- code-switching;
-- spelling conventions and orthographic variation;
-- named entities;
-- very long or structurally unusual inputs;
-- text substantially outside the distributions represented in the evaluation and development data.
-
-Benchmark results in this README are tied to the documented held-out evaluation protocol and should not be interpreted as a guarantee of equivalent performance on unrelated datasets or domains.
+Les utilisateurs doivent évaluer les sorties sur leur dialecte, leur domaine et leur contexte de déploiement avant toute utilisation dans un environnement à enjeux élevés.
 
 ---
 
-## Release structure
+## Limites
+
+Les performances de Griot-MT peuvent varier selon :
+
+- les dialectes et variantes régionales ;
+- les domaines techniques spécialisés ;
+- le code-switching ;
+- les conventions orthographiques ;
+- les entités nommées ;
+- les entrées très longues ou structurellement inhabituelles ;
+- les textes éloignés des distributions représentées dans les données de développement et d’évaluation.
+
+Les résultats présentés dans ce README sont liés au protocole d’évaluation tenu à l’écart et ne doivent pas être interprétés comme une garantie de performances équivalentes sur des jeux de données ou domaines sans rapport.
+
+---
+
+## Structure de la release
 
 ```text
 bivariant/griot-mt/
@@ -804,32 +823,32 @@ bivariant/griot-mt/
 
 ## GitHub Pages
 
-The scientific release page is deployed at:
+La page scientifique de la release est déployée ici :
 
 **https://bivariant.github.io/Griot/**
 
-This repository is configured as a static Next.js export for GitHub Pages.
+Ce dépôt est configuré comme export statique Next.js pour GitHub Pages.
 
 ---
 
-## Local development
+## Développement local
 
 ```bash
 npm install
 npm run dev
 ```
 
-Build the static site:
+Pour construire le site statique :
 
 ```bash
 npm run build
 ```
 
-The exported site is written to `out/`.
+Le site exporté est écrit dans `out/`.
 
 ---
 
-## Contributors
+## Contributeurs
 
 - Luc Alapini
 - Arnauld Adjovi
@@ -851,7 +870,7 @@ Bivariant · Paris, France
 @misc{griot2026,
   title  = {Griot: Open Multilingual Intelligence for African Languages},
   author = {Alapini Luc, Arnauld Adjovi, Dave Dassi, Johaness Hounton, Lucien Tito,
-            Ahmed Adjibade, Joel Gnansounou, Marius Sègbè, Gloria Gado},
+             Ahmed Adjibade, Joel Gnansounou, Marius Sègbè, Gloria Gado},
   year   = {2026},
   url    = {https://bivariant.github.io/Griot/},
   note   = {Bivariant open-weight African language model initiative}
@@ -862,5 +881,5 @@ Bivariant · Paris, France
 
 <p align="center">
   <strong>Bivariant</strong><br/>
-  Building foundational language technology for Africa's linguistic diversity.
+  Construire les technologies linguistiques fondamentales pour la diversité linguistique de l’Afrique.
 </p>
